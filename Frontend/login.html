@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="topBar">
+        <div>
+            <a href="index.html"><h1 id="siteTitle">Liceu Nacional</h1></a>
+        </div>
+        <div id="topButtons">
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="login.html">
+                <button class="loginButton">LOG IN</button>
+                <hr class="indicatingBar" id="barForLogin">
+            </a>
+        </div>
+    </nav>
+        <hr id="dividingBar">
+    <main>
+        <form action="" class="loginForm">
+            <div class="formSection">
+                <label class="formLabel" for="emailBox">Email or Username:</label><br>
+                <input type="text" class="formBox" id="emailBox" placeholder="email or username...">
+            </div>
+            <div class="formSection">
+                <label class="formLabel" for="passwordBox">Password:</label><br>
+                <input type="password" class="formBox" id="passwordBox" placeholder="type your password...">
+            </div>
+            <div id="formLogin" class="formSection">
+                <button class="loginButton" id="loginButtonForm" type="submit">LOG IN</button>
+            </div>
+            <div class="formSection">
+                <h2 class="formQuestions"><a href="#">Forgot your password?</a></h2>
+            </div>
+            <div class="formSection" id="registerBlock">
+                <h2 class="formQuestions">Don't have an account?</h2>
+                <a href="register-student.html">
+                    <button id="registerButton" type="button">Register</button>
+                </a>
+            </div>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
