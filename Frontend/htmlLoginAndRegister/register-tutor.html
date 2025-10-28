@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register-Tutor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/register-student.css">
+    <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="topBar">
+        <div>
+            <a href="../index.html">
+                <h1 id="siteTitle">Liceu Nacional</h1>
+            </a>
+        </div>
+        <div id="topButtons">
+            <a href="../index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="login.html">
+                <button class="loginButton"> LOG IN</button>
+                <hr class="indicatingBar" id="barForRegister">
+            </a>
+        </div>
+    </nav>
+    <hr id="dividingBar">
+    <main>
+        <form action="" class="loginForm">
+            <h2 id="formTitle">Create an Account</h2>
+            <div id="optionToRegister">
+                <div class="oneOption">
+                    <label for="studentOption" class="formLabel" >Student</label><input type="radio"
+                        name="optionToRegister" id="studentOption">
+                </div>
+                <div class="oneOption">
+                    <label for="tutorOption" class="formLabel">Tutor</label><input type="radio" name="optionToRegister" id="tutorOption">
+                </div>
+            </div>
+            <div class="formSection">
+                <label class="formLabel" for="fullName">Full name:</label><br>
+                <input type="text" class="formBox" id="fullName" placeholder="email or username...">
+            </div>
+            <div class="formSection">
+                <label class="formLabel" for="userEmail">Email:</label><br>
+                <input type="email" class="formBox" id="userEmail" placeholder="type your password...">
+            </div>
+            <div class="formSection">
+                <label class="formLabel" for="userName">Username:</label><br>
+                <input type="text" class="formBox" id="userName" placeholder="type a username...">
+            </div>
+            <div class="formSection">
+                <label class="formLabel" for="userBirthdate">Birthdate:</label><br>
+                <input type="date" class="formBox" id="userBirthdate" placeholder="type your password...">
+            </div>
+            <div class="formSection" id="registerBlock">
+                <a href="register-tutor-next.html">
+                    <button class="nextButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;"></i></button>
+                </a>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>

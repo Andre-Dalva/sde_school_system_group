@@ -2,6 +2,7 @@
 .loginForm{
     display: grid;
     width: 55%;
+    min-height: 40vh;
     max-width: 400px;
     row-gap: 2em;
     margin: auto;
@@ -12,10 +13,16 @@
 #formTitle{
     margin: auto;
 }
+#optionToRegister{
+    display: flex;
+    justify-content: space-around;
+}
+.oneOption{
+    display: inline;
+}
 .formLabel{
     font-size: 1.1em;
     font-weight: bold;
-    padding-left: 3%;
     padding-top: 20px;
 }
 .formBox{
@@ -51,6 +58,12 @@
 }
 #registerButton{
     background-color: #737373;
+    padding: 10px 18px;
+    font-size: 0.9em;
+    position: relative;
+}
+.nextButton{
+    background-color: #38b6ff;
     padding: 10px 18px;
     font-size: 0.9em;
     position: relative;
