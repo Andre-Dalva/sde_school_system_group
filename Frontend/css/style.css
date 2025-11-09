@@ -52,6 +52,7 @@ button:hover{
 }
 #topButtons h2{
     font-size: 1em;
+    margin-bottom: 0px;
 }
 .loginButton{
     background-color: #38b6ff;
