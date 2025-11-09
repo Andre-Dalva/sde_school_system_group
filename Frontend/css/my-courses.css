@@ -1,3 +1,16 @@
+
+
+#myCoursesHeader{
+    font-size: 0.82em;
+    color: #ffffff;
+    background-color: #a09e9e;
+    margin-bottom: 2vh;
+    text-shadow: 0px 0px 2px rgb(139, 133, 133);
+    padding: 10px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
 #allCourses{
     display: flex;
     flex-wrap: wrap;
@@ -5,13 +18,11 @@
 }
 
 .course{
-    display: flex;
-    flex-direction: column;
     border: 2px solid #38b6ff;
+    box-shadow: 0px 0px 2px hsl(202, 63%, 32%);
     margin: 2%;
-    max-width: 40%;
-    min-width: 180px;
-    height: 180px;
+    min-width: 200px;
+    min-height: 200px;
     border-radius: 35px;
 }
 .courseImage{
