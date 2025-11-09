@@ -27,6 +27,7 @@ button:hover{
 
 .topBar{
     display: flex;
+    flex-wrap: wrap;
     position: fixed;
     align-content: center;
     justify-content: space-between;
@@ -57,20 +58,18 @@ button:hover{
     margin: auto;
 }
 #dividingBar{
-    position: fixed;
-    justify-self: center;
     height: 3px;
     width: 96%;
-    margin-top: 6vh;
     background-color: #737373;
     opacity: 0.7;
+    margin: auto;
 }
 .indicatingBar{
     width: 1.9em;
     height: 4.5px;
     background-color: #38b6ff;
     position: relative;
-    bottom: -10.11px;
+    bottom: -10px;
     margin: auto;
     animation: indicator 0.5s;
 }

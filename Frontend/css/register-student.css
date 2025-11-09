@@ -1,10 +1,11 @@
 
-.loginForm{
-    display: grid;
+.registerForm{
+    display: flex;
+    flex-direction: column;
     width: 55%;
     min-height: 40vh;
     max-width: 400px;
-    row-gap: 2em;
+    row-gap: 1.5em;
     margin: auto;
     background-color: #dbd8d8;
     border-radius: 25px;
