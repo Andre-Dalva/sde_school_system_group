@@ -1,0 +1,35 @@
+#allCourses{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.course{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #38b6ff;
+    margin: 2%;
+    max-width: 40%;
+    min-width: 180px;
+    height: 180px;
+    border-radius: 35px;
+}
+.courseImage{
+    height: 35%;
+    border-top-right-radius: 50px;
+    border: 5px 80px;
+}
+.courseInfo{
+   border-top: 2px solid #38b6ff;
+}
+.courseTitle{
+    font-size: 0.9em;
+    text-align: center;
+    color: #38b6ff;
+    padding: 8% 0%;
+}
+.courseDetails{
+    font-size: 0.85em;
+    text-align: left;
+    padding: 0 8%;
+}

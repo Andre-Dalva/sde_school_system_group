@@ -45,7 +45,7 @@ button:hover{
 }
 #topButtons{
     display: flex;
-    column-gap: 1em;
+    column-gap: 2em;
     align-items: center;
     justify-content: space-between;
     padding-right: 60px;
