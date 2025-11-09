@@ -9,6 +9,7 @@
     background-color: #dbd8d8;
     border-radius: 25px;
     padding: 40px;
+    justify-content: space-evenly;
 
 }
 #formTitle{
