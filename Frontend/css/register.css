@@ -1,5 +1,5 @@
 
-.registerForm{
+#registerForm{
     display: flex;
     flex-direction: column;
     min-height: 40vh;
@@ -40,8 +40,8 @@
     font-size: 1.1em;
 }
 #registerBlock{
-    display: grid;
-    justify-content: end;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 #barForRegister{
@@ -57,7 +57,7 @@
     font-size: 0.9em;
     position: relative;
 }
-.nextButton{
+.formButton{
     background-color: #38b6ff;
     padding: 10px 18px;
     font-size: 0.9em;
