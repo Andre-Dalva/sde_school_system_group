@@ -18,10 +18,12 @@
 }
 
 .course{
+    display: flex;
+    flex-direction: column;
     border: 2px solid #38b6ff;
-    box-shadow: 0px 0px 2px hsl(202, 63%, 32%);
+    box-shadow: 4px 0px 2px hsl(202, 63%, 32%);
     margin: 2%;
-    min-width: 200px;
+    width: 200px;
     min-height: 200px;
     border-radius: 35px;
 }

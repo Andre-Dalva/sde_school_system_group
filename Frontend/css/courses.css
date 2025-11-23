@@ -1,0 +1,31 @@
+#newCourse{
+    justify-content: center;
+    align-items: center;
+}
+#addSign:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.courseInput{
+    display: inline-block;
+    width: 15%;
+    height: 1%;
+    border: 1px solid #38b6ff;
+    border-radius: 5px;
+}
+#saveCourseBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+#saveCourse{
+    background-color: #38b6ff;
+}
+#courseName{
+    width: 60%;
+}
+#inputTutorName{
+    width: 60%;
+    margin-top: 4px;
+}
