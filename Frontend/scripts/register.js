@@ -1,3 +1,7 @@
+const registerForm = document.getElementById("registerForm");
+const optionsToRegister = document.getElementsByClassName("options");
+const formButtons = document.getElementsByClassName("formButton")
+
 function checkStatus(){
     if(optionsToRegister[0].checked) formButtons[0].onclick = studentNext;
     else formButtons[0].onclick = tutorFinal;
@@ -17,6 +21,7 @@ function studentNext(){
                 <button class="formButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;" onclick="studentFinal()"></i></button>
             </div>`
 }
+
 function studentFinal(){
     registerForm.innerHTML = `<h2 id="formTitle">Create an Account</h2>
             <div class="formSection">
@@ -27,6 +32,7 @@ function studentFinal(){
                 <button class="formButton" type="submit">Sign Up</button>
             </div>`
 }
+
 function tutorFinal(){
     registerForm.innerHTML = `<h2 id="formTitle">Create an Account</h2>
             <div class="formSection">
@@ -45,6 +51,3 @@ function tutorFinal(){
                 <button class="formButton" type="submit">Sign Up</button>
             </div>`
 }
-const registerForm = document.getElementById("registerForm");
-const optionsToRegister = document.getElementsByClassName("options");
-const formButtons = document.getElementsByClassName("formButton")
