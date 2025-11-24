@@ -27,6 +27,7 @@ button:hover{
 
 .topBar{
     display: flex;
+    flex-wrap: wrap;
     position: fixed;
     align-content: center;
     justify-content: space-between;
@@ -44,39 +45,80 @@ button:hover{
 }
 #topButtons{
     display: flex;
-    column-gap: 1em;
+    column-gap: 2em;
     align-items: center;
     justify-content: space-between;
     padding-right: 60px;
 }
 #topButtons h2{
     font-size: 1em;
+    margin-bottom: 0px;
 }
 .loginButton{
     background-color: #38b6ff;
     margin: auto;
 }
 #dividingBar{
-    position: fixed;
-    justify-self: center;
     height: 3px;
     width: 96%;
-    margin-top: 8vh;
     background-color: #737373;
-    opacity: 0.5;
+    opacity: 0.7;
+    margin: auto;
 }
 .indicatingBar{
     width: 1.7em;
     height: 4.5px;
     background-color: #38b6ff;
     position: relative;
-    bottom: -10.11px;
+    bottom: -10px;
     margin: auto;
     animation: indicator 0.5s;
+}
+/* For the dropdown settings*/
+#settings:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#settingsBox{
+    width: 100%;
+    background-color: #dbd8d8;
+    text-align: center;
+    border-radius: 20px;
+    animation: slideDown 1.5s;
+    margin-bottom: 30px;
+}
+#settingTitle{
+    padding: 20px;
+}
+#optionTable{
+    width: 100%;
+    text-align: left;
+}
+.settingOption{
+    text-align: center;
+    font-size: 0.8em;
+    border-top: 2.5px solid white;
+    padding: 2%;
+    padding-left: 4%;
+}
+.settingOption:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#settingContent{
+    text-align: center;
+    width: 75%;
+    border-left: 2.5px solid white;
+    margin-left: 0px;
 }
 @keyframes indicator {
     from{
         transform: scale(0);
+    }
+}
+@keyframes slideDown {
+    from{
+        transform: translateY(-300px);
     }
 }
 

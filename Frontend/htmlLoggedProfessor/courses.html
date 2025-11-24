@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/courses.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="topBar">
+        <div>
+            <a href="index-tutor.html">
+                <h1 id="siteTitle">Liceu Nacional</h1>
+            </a>
+        </div>
+        <div id="topButtons">
+            <a href="index-tutor.html">
+                <h2>Home</h2>
+            </a>
+            <a href="courses.html">
+                <h2>Courses <i class="fa-solid fa-book" style="color: #000000;"></i></h2>
+                <hr class="indicatingBar">
+            </a>
+            <a href="management.html">
+                <h2>Management</h2>
+            </a>
+            <h2 id="settings">
+                <i class="fa-regular fa-circle-user fa-xl" style="color: #000000;"></i> <i
+                    class="fa-solid fa-caret-down fa-lg"></i>
+            </h2>
+        </div>
+        <hr id="dividingBar">
+    </nav>
+    <main>
+        <header id="myCoursesHeader">
+            <h1>My Courses</h1>
+        </header>
+        <div id="allCourses">
+            <div class="course">
+                <div class="courseImage"></div>
+                <div class="courseInfo">
+                    <a href="">
+                        <h2 class="courseTitle">Software Development</h2>
+                    </a>
+                    <p class="courseDetails">Classroom: <span class="classNumber">67</span> <br>
+                        Tutor: <span class="tutorName">Kocsis Gergely</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="course">
+                <div class="courseImage"></div>
+                <div class="courseInfo">
+                    <a href="">
+                        <h2 class="courseTitle">Swaggology</h2>
+                    </a>
+                    <p class="courseDetails">Classroom: <span class="classNumber">68</span> <br>
+                        Tutor: <span class="tutorName">Tanker Tk</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="course">
+                <div class="courseImage"></div>
+                <div class="courseInfo">
+                    <a href="">
+                        <h2 class="courseTitle">Software Development</h2>
+                    </a>
+                    <p class="courseDetails">Classroom: <span class="classNumber">67</span> <br>
+                        Tutor: <span class="tutorName">Kocsis Gergely</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="course" id="newCourse">
+                <div id="addSignBox"><i class="fa-solid fa-plus fa-2xl" style="color: #38b6ff;" id="addSign"></i></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="module" src="../scripts/create-courses.js"></script>
+    <script src="../scripts/settings.js"></script>
+</body>
+
+</html>
