@@ -1,6 +1,7 @@
 @charset "UTF-8";
 *{
     margin: 0px;
+    padding: 0px;
 }
 a{
     text-decoration: none;
@@ -84,7 +85,7 @@ button:hover{
     background-color: #dbd8d8;
     text-align: center;
     border-radius: 20px;
-    animation: slideDown 1.5s;
+    animation: slideDown 1s;
     margin-bottom: 30px;
 }
 #settingTitle{
