@@ -1,17 +1,19 @@
 const registerForm = document.getElementById("registerForm");
 const optionsToRegister = document.getElementsByClassName("options");
 const formButtons = document.getElementsByClassName("formButton");
-const previous = [registerForm.innerHTML];
+const previous = [];
 
 function checkStatus(){
+    previous.push(registerForm.innerHTML);
     if(optionsToRegister[0].checked) formButtons[0].onclick = studentNext;
     else if (optionsToRegister[1].checked)formButtons[0].onclick = tutorFinal;
 }
-formButtons[0].addEventListener("click", () => 
-    previous.push(registerForm.innerHTML));
+
 function previousRegister(){
+    console.log(previous);
     registerForm.innerHTML = previous.pop();
 }
+
 function studentNext(){
     registerForm.innerHTML = `<h2 id="formTitle">Create an Account</h2>
             <div class="formSection">
@@ -28,7 +30,7 @@ function studentNext(){
             </div>`
 }
 function studentFinal(){
-    
+    previous.push(registerForm.innerHTML)
     registerForm.innerHTML = `<h2 id="formTitle">Create an Account</h2>
             <div class="formSection">
                 <label class="formLabel" for="6DigitCode">6-Digit Code:</label><br>
