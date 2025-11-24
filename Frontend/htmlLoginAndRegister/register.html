@@ -36,11 +36,10 @@
             </div>
             <div id="optionToRegister">
                 <div class="oneOption">
-                    <h3 for="studentOption" class="formLabel">Student</h3><input type="radio"
-                        name="optionToRegister" class="options" checked>
+                    <h3 for="studentOption" class="formLabel">Student</h3><input type="radio" name="optionToRegister" class="options" onclick="checkStatus()">
                 </div>
                 <div class="oneOption">
-                    <h3 for="tutorOption" class="formLabel">Tutor</h3><input type="radio" name="optionToRegister" class="options">
+                    <h3 for="tutorOption" class="formLabel">Tutor</h3><input type="radio" name="optionToRegister" class="options" onclick="checkStatus()">
                 </div>
             </div>
             <div class="formSection">
@@ -60,7 +59,7 @@
                 <input type="date" class="formBox" id="userBirthdate" placeholder="type your password...">
             </div>
             <div class="formSection" id="registerBlock">
-                <button class="formButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;" onclick="checkStatus()"></i></button>
+                <button class="formButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;"></i></button>
             </div>
     </main>
     <script src="../scripts/register.js"></script>

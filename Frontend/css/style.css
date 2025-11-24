@@ -84,6 +84,8 @@ button:hover{
     background-color: #dbd8d8;
     text-align: center;
     border-radius: 20px;
+    animation: slideDown 1.5s;
+    margin-bottom: 30px;
 }
 #settingTitle{
     padding: 20px;
@@ -112,6 +114,11 @@ button:hover{
 @keyframes indicator {
     from{
         transform: scale(0);
+    }
+}
+@keyframes slideDown {
+    from{
+        transform: translateY(-300px);
     }
 }
 
