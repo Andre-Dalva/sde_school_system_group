@@ -4,8 +4,7 @@
 }
 .loginForm{
     display: grid;
-    width: 55%;
-    max-width: 400px;
+    width: 45%;
     row-gap: 1em;
     height: 45vh;
     margin: auto;
