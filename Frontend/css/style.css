@@ -61,12 +61,12 @@ button:hover{
     justify-self: center;
     height: 3px;
     width: 96%;
-    margin-top: 6vh;
+    margin-top: 8vh;
     background-color: #737373;
-    opacity: 0.7;
+    opacity: 0.5;
 }
 .indicatingBar{
-    width: 1.9em;
+    width: 1.7em;
     height: 4.5px;
     background-color: #38b6ff;
     position: relative;
@@ -85,4 +85,40 @@ main{
     margin: auto;
     text-align: justify;
     padding-top: 15vh;
+}
+
+main img{
+    display: flex;
+    align-items: flex-start;
+    margin: auto;
+}
+img{
+    border-radius: 5%;
+}
+
+.foto{
+    display: flex;
+    align-items: flex-start;
+    margin: auto;
+}
+
+.infos{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(0, 140, 255);
+}
+
+.extra_contents{
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1em;
+    padding: 10px;
+}
+
+.extra_contents img{
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
 }
