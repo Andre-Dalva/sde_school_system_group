@@ -1,4 +1,4 @@
-export class CreateCourses{
+class CreateCourses{
     constructor(courseName,teacherName,classroom,){
         this.courseName = courseName;
         this.teacherName = teacherName;
@@ -21,8 +21,23 @@ export class CreateCourses{
     }
 }
 const courses = [];
-export function addNewCourse(){
+function addNewCourse(){
     const course = new CreateCourses(document.getElementById("courseName").value, document.getElementById("inputTutorName").value, Number(document.getElementById("inputClassroom").value));
     courses.push(course);
     console.log(courses)
+}
+
+export function startToCreate(courseBody,addBox){
+    const addCourse = document.createElement("div");
+    addCourse.className = "course"
+    addCourse.innerHTML =  `<div id="saveCourseBox"><button id="saveCourse" type="submit">Save</button></div>
+                <div class="courseInfo">
+                    <h2 class="courseTitle"><input type="text" name="" id="courseName" placeholder="Course name..." class="courseInput"></h2>
+                    <p class="courseDetails">Classroom: <span class="classNumber"><input type="text" name="" id="inputClassroom" placeholder="..." class="courseInput"></span> <br> 
+                        Tutor: <span class="tutorName"><input type="text" placeholder="Tutor name..." class="courseInput" id="inputTutorName"></span>
+                    </p>
+                </div>`;
+    courseBody.insertBefore(addCourse,addBox);
+    const saveButton = document.getElementById("saveCourse");
+    saveButton.onclick = addNewCourse;
 }

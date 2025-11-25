@@ -1,0 +1,40 @@
+#helloMessage{
+     margin-bottom: 20px;
+}
+/* For the dropdown settings*/
+#settings:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#settingsBox{
+    width: 100%;
+    background-color: #dbd8d8;
+    text-align: center;
+    border-radius: 20px;
+    animation: slideDown 1s;
+    margin-bottom: 30px;
+}
+#settingTitle{
+    padding: 20px;
+}
+#optionTable{
+    width: 100%;
+    text-align: left;
+}
+.settingOption{
+    text-align: center;
+    font-size: 0.8em;
+    border-top: 2.5px solid white;
+    padding: 2%;
+    padding-left: 4%;
+}
+.settingOption:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#settingContent{
+    text-align: center;
+    width: 75%;
+    border-left: 2.5px solid white;
+    margin-left: 0px;
+}
