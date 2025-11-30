@@ -34,20 +34,24 @@ export function startToCreate(courseBody,addBox){
     const addCourse = document.createElement("div");
 
     addCourse.className = "course";
+    addCourse.id = "newCourse";
     addCourse.innerHTML =  `
-        <div id="saveCourseBox">
-            <button id="saveCourse">Save</button>
-        </div>
-
-        <div class="courseInfo">
+        <div id="nameContainerNew">
             <h2 class="courseTitle">
                 <input type="text" class="courseInput id="courseName" placeholder="Course name..."">
             </h2>
+        </div>
 
-            <p class="courseDetails">
-                Classroom: <span class="classNumber"><input type="text" class="courseInput" id="inputClassroom" placeholder="..." ></span> <br> 
-                Tutor: <span class="tutorName"><input type="text" placeholder="Tutor name..." class="courseInput" id="inputTutorName"></span>
-            </p>
+        <div class="courseDetailsNew">
+            Classroom: <span class="classNumber"><input type="text" class="courseInput" id="inputClassroom" placeholder="..." ></span>
+        </div>
+
+        <div class="courseDetailsNew">
+            Tutor: <span class="tutorName"><input type="text" placeholder="Tutor name..." class="courseInput" id="inputTutorName"></span>
+        </div>
+
+        <div id="saveCourseBox">
+            <button id="saveCourse">Save</button>
         </div>
     `;
 

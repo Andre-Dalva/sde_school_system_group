@@ -18,35 +18,38 @@
 .course{
     display: flex;
     flex-direction: column;
-    border: 2px solid #38b6ff;
-    box-shadow: 4px 0px 2px hsl(202, 63%, 32%);
+    border: 2px solid #a09e9e;
     margin: 2%;
-    width: 200px;
-    min-height: 200px;
+    width: 20%;
+    aspect-ratio: 1 / 1;
     border-radius: 35px;
 }
-.courseImage{
-    height: 35%;
-    border-top-right-radius: 50px;
-    border: 5px 80px;
-}
-.courseInfo{
-   border-top: 2px solid #38b6ff;
+.courseTitleContainer{
+    height: 40%;
+    border-bottom: 2px solid #a09e9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #38b6ff;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
 }
 .courseTitle{
-    font-size: 0.9em;
+    font-size: 1.2em;
     text-align: center;
-    color: #38b6ff;
-    padding: 8% 0%;
+    color: white;
+    justify-self: center;
+}
+.courseDetails, .courseDetailsNew{
+    font-size: 1em;
+    text-align: left;
 }
 .courseDetails{
-    font-size: 0.85em;
-    text-align: left;
-    padding: 0 8%;
+    padding: 8%;
 }
 
 #newCourse{
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 #addSign:hover{
@@ -55,24 +58,20 @@
 }
 .courseInput{
     display: inline-block;
-    width: 15%;
-    height: 1%;
+    width: 60%;
+    height: 1.2em;
     border: 1px solid #38b6ff;
     border-radius: 5px;
+    padding: 0.5%;
 }
-#saveCourseBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.courseDetailsNew{
+    padding-left: 8%;
 }
 #saveCourse{
     background-color: #38b6ff;
+    width: 5em;
+    height: 2em;
 }
-#courseName{
-    width: 60%;
-}
-#inputTutorName{
-    width: 60%;
-    margin-top: 4px;
+#inputClassroom{
+    width: 15%;
 }

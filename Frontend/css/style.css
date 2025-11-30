@@ -44,17 +44,17 @@ button:hover{
 #siteTitle{
     color: #38b6ff;
     padding-left: 60px;
-    font-size: 1.75em;
+    font-size: 2em;
 }
 #topButtons{
     display: flex;
-    column-gap: 2em;
+    column-gap: 1em;
     align-items: center;
     justify-content: space-between;
     padding-right: 60px;
 }
 #topButtons h2{
-    font-size: 1em;
+    font-size: 1.3em;
     margin-bottom: 0px;
 }
 .loginButton{
@@ -70,10 +70,10 @@ button:hover{
 }
 .indicatingBar{
     position: relative;
-    width: 1.7em;
+    width: 2em;
     height: 4.5px;
     background-color: #38b6ff;
-    bottom: -10px;
+    top: 1vh;
     margin: auto;
     animation: indicator 0.5s;
 }
@@ -84,12 +84,7 @@ main{
     margin: auto;
     text-align: justify;
     padding-top: 15vh;
-}
-
-main img{
-    display: flex;
-    align-items: flex-start;
-    margin: auto;
+    font-size: 1.2em;
 }
 /* Forms*/
 .siteForm{
@@ -147,6 +142,12 @@ main img{
     align-items: center;
 }
 /* Home images */
+
+main img{
+    display: flex;
+    align-items: flex-start;
+    margin: auto;
+}
 img{
     border-radius: 5%;
 }
