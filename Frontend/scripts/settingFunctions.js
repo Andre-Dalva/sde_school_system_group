@@ -34,14 +34,17 @@ function showOption(contentBox){
             case 1:
                 function nextChangePassword(){
                     const userPassword = "abc123";
-                    const oldPassword = document.getElementById("currentPassword").ariaValueMax;
+                    const oldPassword = document.getElementById("currentPassword").value;
+                    
+                    const existingH4 = contentBox.querySelector(".errorMessage");
+                    if (existingH4) existingH4.remove();
 
                     if(oldPassword === userPassword){
                         contentBox.innerHTML = `
                             <label for="newPassword" class="formLabel">New password:</label>
                             <input type="text" name="changePassword" id="newPassword" class="formBox" placeholder="...">
 
-                            <label for="newPassword" class="formLabel">Retypre new password:</label>
+                            <label for="newPassword" class="formLabel">Retype new password:</label>
                             <input type="text" name="changePassword" id="newPassword1" class="formBox" placeholder="...">
 
                             <div class="confirmationSection registerBlock">
@@ -54,12 +57,12 @@ function showOption(contentBox){
                         document.getElementById("confirmationButton").addEventListener("click",()=> console.log("Changed"));
                     }
                     else if (oldPassword != userPassword){
-                        const myH3 = document.createElement("h4");
+                        const myH4 = document.createElement("h4");
+                        myH4.innerText = "Password does not match";
+                        myH4.classList.add("errorMessage");
+                        myH4.style.color = "red";
 
-                        myH3.innerText = "Password do not match";
-                        myH3.style.color = "red";
-
-                        contentBox.prepend(myH3);
+                        contentBox.prepend(myH4);
                     }
                 }
                 contentBox.innerHTML = `
@@ -140,7 +143,7 @@ export function dropSettings(settingButton,mainTag){
         settingsBox.id = "settingsBox";
         settingsBox.innerHTML = `
             <h2 id="settingTitle">
-                Settings <a href="settings.html">Zoom Out</a>
+                Settings <i class="fa-solid fa-gear"></i>
             </h2>
 
             <table id="optionTable">

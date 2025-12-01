@@ -1,7 +1,7 @@
 #myCoursesHeader{
     font-size: 0.82em;
     color: #ffffff;
-    background-color: #a09e9e;
+    background-color: #d4a391;
     margin-bottom: 2vh;
     text-shadow: 0px 0px 2px rgb(139, 133, 133);
     padding: 10px 20px;
@@ -20,6 +20,7 @@
     flex-direction: column;
     border: 2px solid #a09e9e;
     margin: 2%;
+    min-width: 250px;
     width: 20%;
     aspect-ratio: 1 / 1;
     border-radius: 35px;
@@ -30,12 +31,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #38b6ff;
-    border-top-left-radius: 34px;
-    border-top-right-radius: 34px;
+    background-color: #d4a391;
+    border-top-left-radius: 32.5px;
+    border-top-right-radius: 32.5px;
 }
 .courseTitle{
     font-size: 1.2em;
+    font-family:"Noto Sans JP", sans-serif;
+    font-weight: 650;
     text-align: center;
     color: white;
     justify-self: center;
@@ -60,7 +63,7 @@
     display: inline-block;
     width: 60%;
     height: 1.2em;
-    border: 1px solid #38b6ff;
+    border: 1px solid #d4a391;
     border-radius: 5px;
     padding: 0.5%;
 }
@@ -68,7 +71,7 @@
     padding-left: 8%;
 }
 #saveCourse{
-    background-color: #38b6ff;
+    background-color: #d4a391;
     width: 5em;
     height: 2em;
 }

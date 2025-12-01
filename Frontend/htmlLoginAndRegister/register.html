@@ -42,38 +42,39 @@
             <div id="optionToRegister">
                 <div class="oneOption">
                     <h3 for="studentOption" class="formLabel">Student</h3>
-                    <input type="radio" name="optionToRegister" class="options" onclick="checkStatus()">
+                    <input type="radio" name="optionToRegister" class="options">
                 </div>
 
                 <div class="oneOption">
                     <h3 for="tutorOption" class="formLabel">Tutor</h3>
-                    <input type="radio" name="optionToRegister" class="options" onclick="checkStatus()">
+                    <input type="radio" name="optionToRegister" class="options">
                 </div>
             </div>
 
             <div class="formSection">
                 <label class="formLabel" for="fullName">Full name:</label><br>
-                <input type="text" class="formBox" id="fullName" placeholder="email or username...">
+                <input type="text" class="formBox" id="fullName" name="fullName" placeholder="email or username...">
             </div>
 
             <div class="formSection">
                 <label class="formLabel" for="userEmail">Email:</label><br>
-                <input type="email" class="formBox" id="userEmail" placeholder="type your email...">
+                <input type="email" class="formBox" id="userEmail" name="userEmail" placeholder="type your email...">
             </div>
 
             <div class="formSection">
                 <label class="formLabel" for="userName">Username:</label><br>
-                <input type="text" class="formBox" id="userName" placeholder="type a username...">
+                <input type="text" class="formBox" id="userName" name="userName" placeholder="type a username...">
             </div>
 
             <div class="formSection">
                 <label class="formLabel" for="userBirthdate">Birthdate:</label><br>
-                <input type="date" class="formBox" id="userBirthdate" placeholder="type your password...">
+                <input type="date" class="formBox" id="userBirthdate" name="userBirthdate" placeholder="type your password...">
             </div>
 
             <div class="formSection registerBlock">
-                <button class="formButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;"></i></button>
+                <button id="nextButton" class="formButton" type="button"><i class="fa-solid fa-arrow-right" style="color: #dbd8d8;"></i></button>
             </div>
+        </form>
     </main>
     
     <script src="../scripts/register.js"></script>

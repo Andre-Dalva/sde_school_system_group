@@ -1,8 +1,18 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
 /* General Description */
 *{
     margin: 0px;
     padding: 0px;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Nunito", sans-serif;
 }
 a{
     text-decoration: none;
@@ -26,7 +36,10 @@ button:hover{
     cursor: pointer;
     opacity: 0.8;
 }
-
+h1{
+    font-family:"Noto Sans JP", sans-serif;
+    font-weight: 700;
+}
 /* Navigation and top bar */
 .topBar{
     display: flex;
@@ -38,11 +51,11 @@ button:hover{
     width: 100%;
     height: 4vh;
     padding-top: 2vh;
-    background-color: white;
     opacity: 0.9;
 }
 #siteTitle{
-    color: #38b6ff;
+    font-family: "Oswald", sans-serif;
+    font-weight: 800;
     padding-left: 60px;
     font-size: 2em;
 }
@@ -56,24 +69,26 @@ button:hover{
 #topButtons h2{
     font-size: 1.3em;
     margin-bottom: 0px;
+    font-family:"Noto Sans JP", sans-serif;;
+    font-weight: bold;
 }
 .loginButton{
-    background-color: #38b6ff;
+    background-color: #d4a391;
     margin: auto;
 }
 #dividingBar{
     height: 3px;
     width: 96%;
-    background-color: #737373;
+    background-color: black;
     opacity: 0.7;
     margin: auto;
 }
 .indicatingBar{
     position: relative;
-    width: 2em;
-    height: 4.5px;
-    background-color: #38b6ff;
-    top: 1vh;
+    width: 3em;
+    height: 8px;
+    background-color: #d4a391;
+    top: 1.2vh;
     margin: auto;
     animation: indicator 0.5s;
 }
@@ -91,6 +106,7 @@ main{
     display: flex;
     flex-direction: column;
     min-height: 40vh;
+    min-width: 300px;
     width: 45%;
     max-width: 400px;
     row-gap: 1em;
@@ -111,7 +127,7 @@ main{
     width: 96%;
     border: none;
     border-radius: 10px;
-    background-color: #38b6ff;
+    background-color: #d4a391;
     margin-bottom: 10px;
     padding: 2%;
 }
@@ -119,12 +135,12 @@ main{
     border: none;
 }
 .formBox::placeholder{
-    color:#dbd8d8;
+    color:white;
     padding-left: 20px;
 }
 
 .formButton{
-    background-color: #38b6ff;
+    background-color: #d4a391;
     padding: 10px 18px;
     font-size: 0.9em;
     position: relative;
@@ -142,42 +158,6 @@ main{
     align-items: center;
 }
 /* Home images */
-
-main img{
-    display: flex;
-    align-items: flex-start;
-    margin: auto;
-}
-img{
-    border-radius: 5%;
-}
-
-.foto{
-    display: flex;
-    align-items: flex-start;
-    margin: auto;
-}
-
-.infos{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: rgb(0, 140, 255);
-}
-
-.extra_contents{
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 1em;
-    padding: 10px;
-}
-
-.extra_contents img{
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
 
 /* Animation */
 @keyframes indicator {

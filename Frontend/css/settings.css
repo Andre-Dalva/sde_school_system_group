@@ -1,7 +1,7 @@
 @import "style.css";
 
 #helloMessage{
-     margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 /* For the dropdown settings*/
 #settings:hover{
@@ -65,7 +65,8 @@
 }
 .activeOption{
     padding: 5px;
-    background-color: white;
+    background-color: #d4a391;
+    color: white;
     border-radius: 5em;
     transition: background-color 0.8s ease;
 }

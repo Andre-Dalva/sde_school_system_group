@@ -2,7 +2,7 @@
 #barForLogin{
     bottom: -5.5px;
 }
-#formLogin{
+#formLoginSection{
     margin: auto;
 }
 #loginButtonForm{
@@ -13,7 +13,7 @@
     font-size: 1.1em;
 }
 #registerButton{
-    background-color: #737373;
+    background-color: hsl(16, 44%, 50%);
     padding: 10px 18px;
     font-size: 0.9em;
 }
@@ -30,4 +30,12 @@
 #loginButtonForm{
     padding: 10px 25px;
     font-size: 1em;
+}
+body{
+    background-image: url("../images/LiceuNacional2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(9px);
+    height: 100vh;
 }

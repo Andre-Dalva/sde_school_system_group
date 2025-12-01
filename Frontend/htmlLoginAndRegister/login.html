@@ -33,21 +33,19 @@
     </nav>
 
     <main>
-        <form class="siteForm">
+        <form class="siteForm" id="loginForm">
             <div class="formSection">
                 <label class="formLabel" for="emailBox">Email or Username:</label><br>
-                <input type="text" class="formBox" id="emailBox" placeholder="email or username...">
+                <input type="text" id="emailBox" class="formBox" name="emailBox" placeholder="email or username..." required>
             </div>
 
             <div class="formSection">
                 <label class="formLabel" for="passwordBox">Password:</label><br>
-                <input type="password" class="formBox" id="passwordBox" placeholder="type your password...">
+                <input type="password" id="passwordBox" class="formBox" name="passwordBox" placeholder="type your password..." required>
             </div>
 
-            <div id="formLogin" class="formSection">
-                <a href="../htmlLoggedStudent/index-student.html">
-                    <button class="loginButton" id="loginButtonForm"type="button">LOG IN</button>
-                </a>
+            <div id="formLoginSection" class="formSection">
+                <button class="loginButton" id="loginButtonForm" type="submit">LOG IN</button>
             </div>
 
             <div class="formSection">
@@ -66,6 +64,7 @@
     <footer>
 
     </footer>
+    <script src="../scripts/login.js"></script>
 </body>
 
 </html>
