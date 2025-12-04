@@ -1,3 +1,12 @@
+body{
+    background-image: url("../images/LiceuNacional2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(9px);
+    min-height: 100vh;
+}
+
 #myCoursesHeader{
     font-size: 0.82em;
     color: #ffffff;
@@ -24,6 +33,7 @@
     width: 20%;
     aspect-ratio: 1 / 1;
     border-radius: 35px;
+    background-color: hsl(0, 0%, 95%);
 }
 .courseTitleContainer{
     height: 40%;

@@ -2,15 +2,11 @@
 #barForLogin{
     bottom: -5.5px;
 }
-#formLoginSection{
-    margin: auto;
-}
 #loginButtonForm{
-    padding: 10px 25px;
-    font-size: 1em;
+    padding: 50px 25px;
 }
 .formQuestions{
-    font-size: 1.1em;
+    font-size: 1em;
 }
 #registerButton{
     background-color: hsl(16, 44%, 50%);
@@ -19,6 +15,7 @@
 }
 #formTitle{
     text-align: center;
+    font-size: 1.6em;
 }
 #optionToRegister{
     display: flex;

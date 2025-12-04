@@ -4,4 +4,76 @@ body{
     background-position: center;
     background-size: cover;
     background-position-y: 0vh;
+    height: 90vh;
+    backdrop-filter: blur(5px);
+}
+p{
+    text-align: justify;
+}
+#upperPart{
+    background-image: url("../images/LiceuNacional.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-position-y: 0vh;
+    height: 90vh;
+}
+#aboutButtonContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: end;
+    height: 99%;
+    flex-wrap: wrap;
+    column-gap: 2em;
+}
+.aboutButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    width: 13em;
+    aspect-ratio: 1/1;
+}
+.aboutButton h2{
+    color: white;
+}
+.aboutButton:hover{
+    box-shadow: 0px 0px 5px white;
+}
+.infoSection{
+    background-color: hsl(16, 44%, 70%);
+}
+.allInfoBlock{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+}
+.informationBlock{
+    width: 25%;
+    padding: 3%;
+    border-radius: 50px;
+    background-color: hsl(0, 0%, 80%);
+}
+.gallery{
+    display: grid;
+    grid-auto-flow: column;
+}
+.gallery figure img{
+    border-radius: 20px;
+}
+#history{
+    background-image: url("../images/oldliceu.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.location{
+    background-image: url("../images/LiceuLocation.png");
+}
+.location h2, .country h2{
+    color: black;
+}
+.country{
+    background-image: url("../images/Country.jpeg");
 }
