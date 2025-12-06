@@ -1,0 +1,118 @@
+package edu.unideb.schoolsystem.backend.controller;
+
+import edu.unideb.schoolsystem.backend.dto.ClassForStudentDTO;
+import edu.unideb.schoolsystem.backend.dto.UserDTO;
+import edu.unideb.schoolsystem.backend.mapper.DTOMapper;
+import edu.unideb.schoolsystem.backend.model.User;
+import edu.unideb.schoolsystem.backend.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    // 1) ADMIN – list all users
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserDTO> getAll() {
+        return userService.getAllUsers().stream()
+                .map(DTOMapper::toUserDTO)
+                .toList();
+    }
+
+    // 2) ADMIN or Same User – get user by ID
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
+    public ResponseEntity<UserDTO> getUser(@PathVariable Long id, Authentication auth) {
+        User user = userService.getUser(id);
+        if (user == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(user));
+    }
+
+    // 3) PUBLIC – registration
+    @PostMapping
+    public ResponseEntity<UserDTO> create(@RequestBody User user) {
+        User created = userService.createUser(user);
+        return ResponseEntity.ok(DTOMapper.toUserDTO(created));
+    }
+
+    // 4) UPDATE – user updates themself OR admin updates anyone
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
+    public ResponseEntity<UserDTO> update(
+            @PathVariable Long id,
+            @RequestBody User updated,
+            Authentication auth
+    ) {
+        User result = userService.updateUser(id, updated);
+        if (result == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(result));
+    }
+
+    // 5) DELETE – admin only
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 6) GET classes for user:
+    // Students: only their classes
+    // Teachers: only their classes (students enrolled in their classes)
+    @GetMapping("/{id}/classes")
+    @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
+    public ResponseEntity<List<ClassForStudentDTO>> getUserClasses(@PathVariable Long id) {
+
+        var classes = userService.getClassesForStudent(id);
+        if (classes == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(
+                classes.stream()
+                        .map(DTOMapper::toClassForStudent)
+                        .toList()
+        );
+    }
+
+    // 7) ADMIN – get unverified teachers
+    @GetMapping("/unverified")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserDTO> unverifiedTeachers() {
+        return userService.getUnverifiedTeachers().stream()
+                .map(DTOMapper::toUserDTO)
+                .toList();
+    }
+
+    // 8) ADMIN – approve teacher
+    @PostMapping("/{id}/approve")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserDTO> approve(@PathVariable Long id) {
+        User verified = userService.verifyTeacher(id);
+        if (verified == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(verified));
+    }
+
+    // 9) Teacher submits verification code (self-verification)
+    @PostMapping("/{id}/verify")
+    @PreAuthorize("hasRole('TEACHER') and #id == principal.id")
+    public ResponseEntity<UserDTO> verifyTeacherCode(
+            @PathVariable Long id,
+            @RequestParam String code
+    ) {
+        User verified = userService.confirmTeacherVerification(id, code);
+        if (verified == null) return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(verified));
+    }
+
+}
