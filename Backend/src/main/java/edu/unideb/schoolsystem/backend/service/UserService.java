@@ -89,7 +89,7 @@ public class UserService {
         teacher.setVerificationExpiresAt(generateExpirationDate());
         teacher.setVerified(false); // stays false until code confirmed
 
-        emailService.sendVerificationCode(teacher.getEmail(), code);
+        emailService.sendVerificationCode(teacher.getEmail(), teacher.getId(), code);
 
         return userRepository.save(teacher);
     }

@@ -5,10 +5,13 @@ import edu.unideb.schoolsystem.backend.dto.ClassForStudentDTO;
 import edu.unideb.schoolsystem.backend.dto.StudentInClassDTO;
 import edu.unideb.schoolsystem.backend.mapper.DTOMapper;
 import edu.unideb.schoolsystem.backend.model.ClassEntity;
+import edu.unideb.schoolsystem.backend.model.ROLES;
+import edu.unideb.schoolsystem.backend.model.User;
 import edu.unideb.schoolsystem.backend.service.ClassService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +52,31 @@ public class ClassController {
         if (created == null) return ResponseEntity.badRequest().build();
         return new ResponseEntity<>(DTOMapper.toClassDTO(created), HttpStatus.CREATED);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<ClassDTO> updateClass(@PathVariable Long id, @RequestBody ClassEntity body) {
+        ClassEntity existing = classService.getClassById(id);
+        if (existing == null) return ResponseEntity.notFound().build();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // Admin can update anything
+        if (currentUser.getRole() == ROLES.ADMIN) {
+            ClassEntity updated = classService.updateClass(id, body);
+
+            return ResponseEntity.ok(DTOMapper.toClassDTO(updated));
+        }
+
+        // Teacher can update ONLY their own class
+        if (currentUser.getRole() == ROLES.TEACHER) {
+            if (!existing.getTeacher().getId().equals(currentUser.getId())) {
+                return ResponseEntity.status(403).build();
+            }
+            ClassEntity updated = classService.updateClass(id, body);
+
+            return ResponseEntity.ok(DTOMapper.toClassDTO(updated));
+        }
+
+        // Students cannot update classes
+        return ResponseEntity.status(403).build();
+    }
 
     // 4) DELETE class (teacher or admin)
     @DeleteMapping("/{id}")
@@ -72,7 +100,7 @@ public class ClassController {
 
     // 6) ENROLL STUDENT (student only)
     @PostMapping("/{classId}/enroll/{studentId}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasRole('TEACHER') or (hasRole('STUDENT') and #studentId == principal.id)")
     public ResponseEntity<ClassDTO> enrollStudent(
             @PathVariable Long classId,
             @PathVariable Long studentId

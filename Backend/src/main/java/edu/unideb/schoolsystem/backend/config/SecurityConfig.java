@@ -2,10 +2,10 @@ package edu.unideb.schoolsystem.backend.config;
 
 import edu.unideb.schoolsystem.backend.repository.UserRepository;
 import edu.unideb.schoolsystem.backend.security.JwtAuthFilter;
-import edu.unideb.schoolsystem.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,10 +23,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private JwtAuthFilter jwtAuthFilter;
+    private final JwtAuthFilter jwtAuthFilter;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
+    public UserDetailsService userDetailsService() {
         return identifier ->
                 userRepository.findByEmailOrUsername(identifier, identifier)
                         .orElseThrow(() -> new RuntimeException("User not found"));
@@ -34,12 +42,10 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider(
-            PasswordEncoder encoder,
-            UserDetailsService userDetailsService
     ) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(encoder);
-        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        provider.setUserDetailsService(userDetailsService());
         return provider;
     }
 
@@ -57,7 +63,9 @@ public class SecurityConfig {
 
                         // Public endpoints
                         .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/users").permitAll() // registration
+                        .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/users/*/verify").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users/*/verify").permitAll()// registration
 
                         // Everything else must be authenticated
                         .anyRequest().authenticated()
@@ -65,7 +73,7 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .authenticationProvider(authenticationProvider(null, userDetailsService(null)))
+                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

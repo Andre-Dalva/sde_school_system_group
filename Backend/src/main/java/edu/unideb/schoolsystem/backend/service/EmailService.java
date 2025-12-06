@@ -12,11 +12,16 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendVerificationCode(String to, String code) {
+    public void sendVerificationCode(String to, Long id, String code) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(to);
         msg.setSubject("Your Teacher Verification Code");
-        msg.setText("Your verification code is: " + code);
+        msg.setText("Hello," +
+                "\nTo log in you need to go to this address:" +
+                "http://localhost:8080/users/" + id +
+                "/verify?" + "code=" + code +
+                "\n This is your teacher ID:" + id +
+                "\nYour verification code is: " + code);
         javaMailSender.send(msg);
     }
 }

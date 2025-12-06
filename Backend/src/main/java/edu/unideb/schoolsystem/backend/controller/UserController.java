@@ -105,7 +105,6 @@ public class UserController {
 
     // 9) Teacher submits verification code (self-verification)
     @PostMapping("/{id}/verify")
-    @PreAuthorize("hasRole('TEACHER') and #id == principal.id")
     public ResponseEntity<UserDTO> verifyTeacherCode(
             @PathVariable Long id,
             @RequestParam String code

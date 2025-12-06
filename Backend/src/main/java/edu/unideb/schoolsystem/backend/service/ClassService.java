@@ -1,9 +1,11 @@
 package edu.unideb.schoolsystem.backend.service;
 
 import edu.unideb.schoolsystem.backend.model.ClassEntity;
+import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
 import edu.unideb.schoolsystem.backend.repository.ClassRepository;
 import edu.unideb.schoolsystem.backend.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +38,18 @@ public class ClassService {
         return classRepository.save(classEntity);
     }
 
+    public ClassEntity updateClass(Long id, ClassEntity updatedData) {
+        return classRepository.findById(id).map(classEntity -> {
+
+            classEntity.setTitle(updatedData.getTitle());
+            classEntity.setDescription(updatedData.getDescription());
+            classEntity.setRoomId(updatedData.getRoomId());
+
+            return classRepository.save(classEntity);
+        }).orElse(null);
+    }
+
+
     public void deleteClass(Long id) {
         classRepository.deleteById(id);
     }
@@ -51,13 +65,30 @@ public class ClassService {
         return classRepository.save(classEntity);
     }
 
+
     public ClassEntity enrollStudent(Long classId, Long studentId) {
         ClassEntity classEntity = classRepository.findById(classId).orElse(null);
         User student = userRepository.findById(studentId).orElse(null);
 
         if (classEntity == null || student == null) return null;
-        if (student.getRole() != edu.unideb.schoolsystem.backend.model.ROLES.STUDENT) return null;
         if (classEntity.getStudents().contains(student)) return classEntity;
+        if (student.getRole() != edu.unideb.schoolsystem.backend.model.ROLES.STUDENT) return null;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (currentUser.getRole() == ROLES.TEACHER) {
+            if (!classEntity.getTeacher().getId().equals(currentUser.getId())) {
+                return null;
+            }
+        }
+
+
+        if (currentUser.getRole() == ROLES.STUDENT) {
+            if (!currentUser.getId().equals(studentId)) {
+                return null;
+            }
+        }
+        if (currentUser.getRole() == ROLES.ADMIN) {
+            return null;
+        }
 
         classEntity.getStudents().add(student);
         return classRepository.save(classEntity);
