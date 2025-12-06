@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Management</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/management.css">
     <link rel="stylesheet" href="../css/settings.css">
@@ -47,6 +47,38 @@
     </nav>
 
     <main>
+        <header id="allStudents">
+            <h1>Students and Courses</h1>
+        </header>
+
+        <table id="studentsTable">
+            <thead>
+                <tr><th>Software Development</th></tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Starting Date</th>
+                    <th style="text-align: center;"><button id="newStudent" class="formButton">New</button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>André Luis d'Alva</td>
+                    <td>andreluiscapela@gmail.com</td>
+                    <td>andreluis</td>
+                    <td>2025-12-01</td>
+                    <td><button class="formButton updateButton">Update</button> <button class="deleteButton">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Cilina da Silva</td>
+                    <td>nalicycra28@gmail.com</td>
+                    <td>cilinasil</td>
+                    <td>2025-11-30</td>
+                    <td><button class="formButton updateButton">Update</button> <button class="deleteButton">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
 
     </main>
 

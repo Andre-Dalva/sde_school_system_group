@@ -75,14 +75,33 @@ export function startToCreate(courseBody,addBox){
     cancelButton.onclick = ()=> addCourse.remove();
 }
 
-export function editing(all){
+export function editing(all) {
     const editingSave = document.getElementById("editingSave");
     editingSave.style.display = "block";
-    const cancelButton = document.getElementById("cancelEditing");
-    cancelButton.onclick = ()=> location.reload();
-    all.forEach(
-        (course) => {
-            course.style.display = "block";
-        }
-    )
+
+    document.getElementById("cancelEditing").onclick = () => location.reload();
+
+    // Show the editable fields
+    all.forEach(course => {
+        course.style.display = "block";
+    });
+
+    // Attach edit behavior
+    const edits = document.querySelectorAll(".edit");
+
+    
+    edits.forEach(edit => {
+        let on = 0;
+        edit.addEventListener("click", () => {
+            const editingOption = edit.closest(".course").querySelector(".editingOptions");
+            if(on) {
+                editingOption.style.display = "none";
+                on = 0;
+            }
+            else{
+                editingOption.style.display = "block";
+                on = 1;
+            }
+        });
+    });
 }

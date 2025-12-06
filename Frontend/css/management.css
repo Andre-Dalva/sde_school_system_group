@@ -6,3 +6,31 @@ body{
     backdrop-filter: blur(9px);
     min-height: 100vh;
 }
+#allStudents{
+    background-color: #d4a391;
+    padding: 10px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#studentsTable{
+    width: 100%;
+    margin-top: 2%;
+    text-align: left;
+    background-color: white;
+    padding: 2%;
+    border-radius: 10px;
+}
+#studentsTable th{
+    font-size: 1.3em;
+    color: #d4a391;
+}
+#studentsTable button{
+    font-size: 0.7em;
+}
+#newStudent{
+    background-color: green;
+}
+.deleteButton{
+    background-color: red;
+    padding: 10px 18px;
+}
