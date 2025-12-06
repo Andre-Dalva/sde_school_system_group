@@ -1,0 +1,8 @@
+body{
+    background-image: url("../images/LiceuNacional2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(9px);
+    min-height: 100vh;
+}
