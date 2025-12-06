@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+
+            background-image: url("images/LiceuNacional.jpeg");
+            background-size: cover;
+            background-position: center;
+            filter: blur(25px);
+            z-index: -1;
+            height: 100vh;
+        }
+        #contents{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            row-gap: 2em;
+            column-gap: 2em;
+            padding: 1%;
+        }
+
+        #contents img{
+            width: 27%;
+            height: 35vh;
+            border-radius: 10%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="topBar">
+        <div>
+            <a href="index.html">
+                <h1 id="siteTitle">Liceu Nacional</h1>
+            </a>
+        </div>
+        <div id="topButtons">
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="gallery.html">
+                <h2>Gallery</h2>
+                <hr class="indicatingBar">
+            </a>
+            <a href="htmlLoginAndRegister/login.html">
+                <button class="loginButton"> LOG IN</button>
+            </a>
+        </div>
+        <hr id="dividingBar">
+    </nav>
+
+    <main>
+        <h1>Gallery</h1>
+
+        <div id="contents">
+            <img src="images/GalleryImages/LiceuPic11.webp">
+            <img src="images/GalleryImages/LiceuPic5.jpg">
+            <img src="images/GalleryImages/LiceuPic2.jpg">
+        
+            <img src="images/GalleryImages/LiceuPic10.webp">
+            <img src="images/GalleryImages/LiceuPic12.jpg">
+            <img src="images/GalleryImages/LiceuPic.jpg">
+        
+            <img src="images/GalleryImages/LiceuPic13.jpeg">
+            <img src="images/GalleryImages/LiceuPic15.jpeg">
+            <img src="images/GalleryImages/LiceuNacional.jpg">
+        
+            <img src="images/GalleryImages/LiceuPic1.jpg">
+            <img src="images/GalleryImages/LiceuPic4.jpg">
+            <img src="images/GalleryImages/LiceuPic9.webp">
+        
+            <img src="images/GalleryImages/LiceuPic8.webp">
+            <img src="images/GalleryImages/LiceuPic14.jpeg">
+            <img src="images/GalleryImages/LiceuPic6.jpg">
+        </div>
+    </main>
+    
+</body>

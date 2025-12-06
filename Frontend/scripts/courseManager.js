@@ -21,6 +21,18 @@ class CreateCourses{
         if(newClassroom == "") window.alert("Classroom is empty");
         else this._classroom = newClassroom;
     }
+
+    get courseName(){
+        return this._courseName;
+    }
+
+    get teacherName(){
+        return this._teacherName;
+    }
+
+    get classroom(){
+        return this._classroom;
+    }
 }
 
 function addNewCourse(){
@@ -51,11 +63,45 @@ export function startToCreate(courseBody,addBox){
         </div>
 
         <div id="saveCourseBox">
-            <button id="saveCourse">Save</button>
+            <button id="saveCourse" class="formButton">Save</button>
+            <button class="formButton cancelButton" type="reset" id="cancelButton">Cancel</button>
         </div>
     `;
 
     courseBody.insertBefore(addCourse,addBox);
     const saveButton = document.getElementById("saveCourse");
+    const cancelButton = document.getElementById("cancelButton");
     saveButton.onclick = addNewCourse;
+    cancelButton.onclick = ()=> addCourse.remove();
+}
+
+export function editing(all) {
+    const editingSave = document.getElementById("editingSave");
+    editingSave.style.display = "block";
+
+    document.getElementById("cancelEditing").onclick = () => location.reload();
+
+    // Show the editable fields
+    all.forEach(course => {
+        course.style.display = "block";
+    });
+
+    // Attach edit behavior
+    const edits = document.querySelectorAll(".edit");
+
+    
+    edits.forEach(edit => {
+        let on = 0;
+        edit.addEventListener("click", () => {
+            const editingOption = edit.closest(".course").querySelector(".editingOptions");
+            if(on) {
+                editingOption.style.display = "none";
+                on = 0;
+            }
+            else{
+                editingOption.style.display = "block";
+                on = 1;
+            }
+        });
+    });
 }
