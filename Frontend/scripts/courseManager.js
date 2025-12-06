@@ -38,7 +38,7 @@ export function startToCreate(courseBody,addBox){
     addCourse.innerHTML =  `
         <div id="nameContainerNew">
             <h2 class="courseTitle">
-                <input type="text" class="courseInput id="courseName" placeholder="Course name..."">
+                <input type="text" class="courseInput" id="courseName" placeholder="Course name...">
             </h2>
         </div>
 

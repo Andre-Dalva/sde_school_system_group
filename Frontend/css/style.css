@@ -87,13 +87,13 @@ h1{
     width: 3em;
     height: 8px;
     background-color: #d4a391;
-    top: 2.5vh;
+    top: 2vh;
     margin: auto;
     animation: indicator 0.5s;
 }
 
 /* Body */
-.main{
+main{
     width: 80vw;
     margin: auto;
     text-align: center;
@@ -166,5 +166,13 @@ h1{
 @keyframes slideDown {
     from{
         transform: translateY(-6vh);
+    }
+}
+.blinking{
+    animation: blinking infinite 1.5s;
+}
+@keyframes blinking {
+    50%{
+        opacity: 0.1;
     }
 }
