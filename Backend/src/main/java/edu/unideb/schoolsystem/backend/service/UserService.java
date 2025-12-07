@@ -4,6 +4,7 @@ import edu.unideb.schoolsystem.backend.model.ClassEntity;
 import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
 import edu.unideb.schoolsystem.backend.repository.UserRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,18 @@ public class UserService {
             user.setVerificationExpiresAt(null);
         }
 
-        return userRepository.save(user);
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email is already taken.");
+        }
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new RuntimeException("Username is already taken.");
+        }
+
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Email or Username already in use");
+        }
     }
 
     // Secure update: no role change, no raw password
@@ -55,12 +67,21 @@ public class UserService {
             if (patch.getName() != null)
                 user.setName(patch.getName());
 
-            if (patch.getUsername() != null)
-                user.setUsername(patch.getUsername());
-
-            if (patch.getEmail() != null)
+            // Check for email uniqueness (exclude current user)
+            if (patch.getEmail() != null && !patch.getEmail().equals(user.getEmail())) {
+                if (userRepository.existsByEmail(patch.getEmail())) {
+                    throw new RuntimeException("Email is already taken.");
+                }
                 user.setEmail(patch.getEmail());
+            }
 
+            // Check for username uniqueness (exclude current user)
+            if (patch.getUsername() != null && !patch.getUsername().equals(user.getUsername())) {
+                if (userRepository.existsByUsername(patch.getUsername())) {
+                    throw new RuntimeException("Username is already taken.");
+                }
+                user.setUsername(patch.getUsername());
+            }
             if (patch.getBirthDate() != null)
                 user.setBirthDate(patch.getBirthDate());
 
