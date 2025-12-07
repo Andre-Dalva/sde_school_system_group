@@ -95,7 +95,7 @@ body{
 }
 .courseInput{
     display: inline-block;
-    width: 60%;
+    width: 50%;
     height: 1.2em;
     border: 1px solid #d4a391;
     border-radius: 5px;
@@ -109,4 +109,13 @@ body{
 }
 #inputClassroom{
     width: 15%;
+}
+.input-error::placeholder {
+    color: red !important;
+}
+.input-error::-ms-input-placeholder {
+    color: red !important;
+}
+.input-error:focus{
+    outline: 2px solid red !important;
 }
