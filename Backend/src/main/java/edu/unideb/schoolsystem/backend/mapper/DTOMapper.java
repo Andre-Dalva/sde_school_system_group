@@ -27,7 +27,7 @@ public class DTOMapper {
         dto.setTitle(classEntity.getTitle());
         dto.setDescription(classEntity.getDescription());
         dto.setRoomId(classEntity.getRoomId());
-        dto.setTeacherId(classEntity.getTeacher() != null ? classEntity.getTeacher().getId() : null);
+        dto.setTeacherName(classEntity.getTeacher() != null ? classEntity.getTeacher().getName() : null);
         return dto;
     }
 

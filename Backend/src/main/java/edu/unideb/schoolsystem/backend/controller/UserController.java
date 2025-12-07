@@ -3,23 +3,30 @@ package edu.unideb.schoolsystem.backend.controller;
 import edu.unideb.schoolsystem.backend.dto.ClassForStudentDTO;
 import edu.unideb.schoolsystem.backend.dto.UserDTO;
 import edu.unideb.schoolsystem.backend.mapper.DTOMapper;
+import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
 import edu.unideb.schoolsystem.backend.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // 1) ADMIN – list all users
@@ -47,6 +54,26 @@ public class UserController {
         return ResponseEntity.ok(DTOMapper.toUserDTO(created));
     }
 
+    @GetMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<UserDTO> getMe(Authentication auth) {
+        User user = (User) auth.getPrincipal();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(user));
+    }
+
+
+    @PatchMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<UserDTO> updateMe(
+            @RequestBody User patch,
+            Authentication auth
+    ) {
+        User me = (User) auth.getPrincipal();
+        User updated = userService.updateUser(me.getId(), patch);
+        return ResponseEntity.ok(DTOMapper.toUserDTO(updated));
+    }
+
+
     // 4) UPDATE – user updates themselves OR admin updates anyone
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
@@ -64,8 +91,21 @@ public class UserController {
 
     // 5) DELETE – admin only
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @RequestBody(required = false) Map<String, String> body) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!currentUser.getRole().equals(ROLES.ADMIN)) {
+            if (body == null || !body.containsKey("password")) {
+                return ResponseEntity.badRequest().build();
+            }
+
+            String rawPassword = body.get("password");
+            if (!passwordEncoder.matches(rawPassword, currentUser.getPassword())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        }
+
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

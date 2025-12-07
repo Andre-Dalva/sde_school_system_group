@@ -2,11 +2,13 @@ package edu.unideb.schoolsystem.backend.controller;
 
 import edu.unideb.schoolsystem.backend.dto.ClassDTO;
 import edu.unideb.schoolsystem.backend.dto.ClassForStudentDTO;
+import edu.unideb.schoolsystem.backend.dto.CreateClassDTO;
 import edu.unideb.schoolsystem.backend.dto.StudentInClassDTO;
 import edu.unideb.schoolsystem.backend.mapper.DTOMapper;
 import edu.unideb.schoolsystem.backend.model.ClassEntity;
 import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
+import edu.unideb.schoolsystem.backend.repository.UserRepository;
 import edu.unideb.schoolsystem.backend.service.ClassService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +21,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/classes")
 public class ClassController {
+    private final UserRepository userRepository;
 
     private final ClassService classService;
 
-    public ClassController(ClassService classService) {
+    public ClassController(UserRepository userRepository, ClassService classService) {
+        this.userRepository = userRepository;
         this.classService = classService;
     }
 
@@ -47,9 +51,35 @@ public class ClassController {
     // 3) CREATE class (teacher or admin)
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
-    public ResponseEntity<ClassDTO> createClass(@RequestBody ClassEntity classEntity) {
+    public ResponseEntity<ClassDTO> createClass(@RequestBody CreateClassDTO dto) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ClassEntity classEntity = new ClassEntity();
+        classEntity.setTitle(dto.getTitle());
+        classEntity.setRoomId(dto.getRoomId());
+        classEntity.setDescription("default description");
+        if (currentUser.getRole() == ROLES.TEACHER) {
+            classEntity.setTeacher(currentUser);
+        }
+
+        if (currentUser.getRole() == ROLES.ADMIN) {
+            if (dto.getTeacherId() == null) {
+                return ResponseEntity.badRequest().body(null);
+            }
+
+            User teacher = userRepository.findById(dto.getTeacherId())
+                    .orElse(null);
+
+            if (teacher == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+
+            classEntity.setTeacher(teacher);
+        }
         ClassEntity created = classService.createClass(classEntity);
+
+
         if (created == null) return ResponseEntity.badRequest().build();
+
         return new ResponseEntity<>(DTOMapper.toClassDTO(created), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
