@@ -72,7 +72,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll()        // <-- added
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/users/**").permitAll()
                         // /users/verify, /users/123
 
                         .anyRequest().authenticated()

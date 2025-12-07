@@ -3,10 +3,12 @@ package edu.unideb.schoolsystem.backend.service;
 import edu.unideb.schoolsystem.backend.model.ClassEntity;
 import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
+import edu.unideb.schoolsystem.backend.repository.ClassRepository;
 import edu.unideb.schoolsystem.backend.repository.UserRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -16,13 +18,15 @@ public class UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final ClassRepository classRepository;
 
     public UserService(UserRepository userRepository,
                        EmailService emailService,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder, ClassRepository classRepository) {
         this.userRepository = userRepository;
         this.emailService = emailService;
         this.passwordEncoder = passwordEncoder;
+        this.classRepository = classRepository;
     }
 
     public List<User> getAllUsers() {
@@ -138,8 +142,31 @@ public class UserService {
         return userRepository.save(teacher);
     }
 
+    @Transactional
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return; // nothing to delete
+        }
+
+        // 1) If user is a STUDENT – remove from all class student lists
+        var classesAsStudent = classRepository.findByStudents_Id(id);
+        for (ClassEntity c : classesAsStudent) {
+            c.getStudents().remove(user);
+        }
+
+        // 2) If user is a TEACHER – detach as teacher from all classes
+        var classesAsTeacher = classRepository.findByTeacher_Id(id);
+        for (ClassEntity c : classesAsTeacher) {
+            c.setTeacher(null);          // class remains, but with no teacher
+        }
+
+        // 3) Persist the class changes
+        classRepository.saveAll(classesAsStudent);
+        classRepository.saveAll(classesAsTeacher);
+
+        // 4) Finally delete the user
+        userRepository.delete(user);
     }
 
     public List<User> getUnverifiedTeachers() {

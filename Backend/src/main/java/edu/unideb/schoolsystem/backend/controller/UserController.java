@@ -89,26 +89,43 @@ public class UserController {
         return ResponseEntity.ok(DTOMapper.toUserDTO(user));
     }
 
-    // 5) DELETE – admin only
+    // Admin can delete anyone (no password)
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
-    public ResponseEntity<Void> delete(@PathVariable Long id, @RequestBody(required = false) Map<String, String> body) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (!currentUser.getRole().equals(ROLES.ADMIN)) {
-            if (body == null || !body.containsKey("password")) {
-                return ResponseEntity.badRequest().build();
-            }
-
-            String rawPassword = body.get("password");
-            if (!passwordEncoder.matches(rawPassword, currentUser.getPassword())) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-            }
-        }
-
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/me")
+    public ResponseEntity<Void> deleteCurrentUser(
+            @RequestBody(required = false) Map<String, String> body,
+            Authentication authentication
+    ) {
+        // Must be logged in
+        if (authentication == null || !(authentication.getPrincipal() instanceof User currentUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Must send password in body
+        if (body == null || !body.containsKey("password")) {
+            return ResponseEntity.badRequest().build();  // 400 – missing password
+        }
+
+        String rawPassword = body.get("password");
+
+        // Check password
+        if (!passwordEncoder.matches(rawPassword, currentUser.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401 – wrong password
+        }
+
+        // Everything OK → delete
+        userService.deleteUser(currentUser.getId());
+        return ResponseEntity.noContent().build(); // 204
+    }
+
+
+
 
     // 6) GET classes for user:
     // Students: only their classes
