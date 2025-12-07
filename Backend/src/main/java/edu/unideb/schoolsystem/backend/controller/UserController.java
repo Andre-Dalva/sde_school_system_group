@@ -47,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(DTOMapper.toUserDTO(created));
     }
 
-    // 4) UPDATE – user updates themself OR admin updates anyone
+    // 4) UPDATE – user updates themselves OR admin updates anyone
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
     public ResponseEntity<UserDTO> update(
