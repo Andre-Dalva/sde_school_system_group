@@ -49,21 +49,26 @@ public class UserService {
     }
 
     // Secure update: no role change, no raw password
-    public User updateUser(Long id, User newUser) {
+    public User updateUser(Long id, User patch) {
         return userRepository.findById(id).map(user -> {
-            user.setName(newUser.getName());
-            user.setUsername(newUser.getUsername());
-            user.setEmail(newUser.getEmail());
-            user.setBirthDate(newUser.getBirthDate());
 
-            // Only update password if provided
-            if (newUser.getPassword() != null && !newUser.getPassword().isEmpty()) {
-                user.setPassword(passwordEncoder.encode(newUser.getPassword()));
-            }
+            if (patch.getName() != null)
+                user.setName(patch.getName());
+
+            if (patch.getUsername() != null)
+                user.setUsername(patch.getUsername());
+
+            if (patch.getEmail() != null)
+                user.setEmail(patch.getEmail());
+
+            if (patch.getBirthDate() != null)
+                user.setBirthDate(patch.getBirthDate());
+
+            if (patch.getPassword() != null && !patch.getPassword().isBlank())
+                user.setPassword(passwordEncoder.encode(patch.getPassword()));
 
             // Do NOT change role here
             // user.setRole(newUser.getRole());
-
             return userRepository.save(user);
         }).orElse(null);
     }

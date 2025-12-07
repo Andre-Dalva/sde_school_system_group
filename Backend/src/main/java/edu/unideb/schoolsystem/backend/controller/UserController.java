@@ -48,16 +48,18 @@ public class UserController {
     }
 
     // 4) UPDATE – user updates themself OR admin updates anyone
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
     public ResponseEntity<UserDTO> update(
             @PathVariable Long id,
-            @RequestBody User updated,
+            @RequestBody User patch,
             Authentication auth
     ) {
-        User result = userService.updateUser(id, updated);
-        if (result == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(DTOMapper.toUserDTO(result));
+        User user = userService.updateUser(id, patch);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(DTOMapper.toUserDTO(user));
     }
 
     // 5) DELETE – admin only
