@@ -1,4 +1,5 @@
 import {showClasses} from '../courseScripts/courseRead.js';
+import { startToCreate } from '../courseScripts/courseCreate.js';
 
 const API_BASE_URL = "https://invaluably-grapier-jeni.ngrok-free.dev";
 const API_CLASSES_URL = `${API_BASE_URL}/classes`;
@@ -52,7 +53,7 @@ export async function createNewClass(classData) {
 }
 
 // 2. FETCH CLASSES (READ ALL)
-export async function fetchClasses(startToCreate) {
+export async function fetchClasses() {
 
     const courseBody = document.getElementById("allCourses");
 

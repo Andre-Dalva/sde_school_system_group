@@ -87,5 +87,7 @@ export function startToCreate(courseBody, addBox) {
     const saveButton = document.getElementById("saveCourse");
     const cancelButton = document.getElementById("cancelButton");
     saveButton.onclick = () => addNewCourse(addCourse);
-    cancelButton.onclick = () => addCourse.remove();
+    cancelButton.onclick = () => {addCourse.remove();
+        courseBody.append(addBox);
+    }
 }
