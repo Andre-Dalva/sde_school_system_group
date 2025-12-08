@@ -10,7 +10,6 @@ let formData = {
 };
 
 export function showStep(step, formData) {
-    log("Switching to step:", step);
 
     switch (step) {
         case 1: renderStep1(formData); break;
