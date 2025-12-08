@@ -23,17 +23,17 @@ export function renderStep1(formData) {
 
         <div class="formSection">
             <label>Full name:</label>
-            <input type="text" id="fullName" class="formBox" value="${formData.name}">
+            <input type="text" id="fullName" placeholder="type your full name..." class="formBox" value="${formData.name}">
         </div>
 
         <div class="formSection">
             <label>Email:</label>
-            <input type="email" id="userEmail" class="formBox" value="${formData.email}">
+            <input type="email" id="userEmail" placeholder="type your email..." class="formBox" value="${formData.email}">
         </div>
 
         <div class="formSection">
             <label>Username:</label>
-            <input type="text" id="userName" class="formBox" value="${formData.username}">
+            <input type="text" id="userName" placeholder="type your username..." class="formBox" value="${formData.username}">
         </div>
 
         <div class="formSection">
