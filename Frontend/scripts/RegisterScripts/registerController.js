@@ -1,4 +1,4 @@
-import { renderStep1,renderStep2,renderStep3 } from "./registerFunctions";
+import { renderStep1,renderStep2,renderStep3 } from "./registerFunctions.js";
 
 let formData = {
     name: "",

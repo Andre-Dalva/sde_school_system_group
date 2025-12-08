@@ -1,5 +1,5 @@
 import { log } from "../RegisterScripts/registerFunctions";
-import { showStep } from "../RegisterScripts/registerController"; 
+import { showStep } from "../RegisterScripts/registerController.js"; 
 
 const API = "https://invaluably-grapier-jeni.ngrok-free.dev";
 
