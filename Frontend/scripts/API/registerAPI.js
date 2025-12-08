@@ -27,7 +27,7 @@ export async function submitStudent(formData) {
 
         if (response.ok) {
             alert("Student registered successfully! You can now log in.");
-            window.location.href = '/login.html';
+            window.location.href = '/htmlLoginAndRegister/login.html';
         } else {
             const error = await response.json();
             alert(`Student registration failed: ${error.message || response.statusText}`);
@@ -99,7 +99,7 @@ export async function verifyTeacher() {
 
         if (resVerify.ok) {
             alert("Tutor verified successfully! You can now log in.");
-            window.location.href = '/login.html';
+            window.location.href = '/htmlLoginAndRegister/login.html';
         } else {
             const error = await resVerify.json();
             alert(`Verification failed. Details: ${error.message || resVerify.statusText}`);

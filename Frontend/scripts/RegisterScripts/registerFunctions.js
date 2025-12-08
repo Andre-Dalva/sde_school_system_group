@@ -1,4 +1,5 @@
 import { submitStudent, submitTeacher, verifyTeacher } from "../API/registerAPI.js";
+import { showStep } from "../RegisterScripts/registerController.js";
 
 export function log(...args) {
     console.log("%c[REGISTER DEBUG]", "color:#ff8800;font-weight:bold;", ...args);
