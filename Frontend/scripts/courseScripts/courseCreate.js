@@ -1,4 +1,5 @@
-import { fetchClasses } from "./courseRead.js";
+import {fetchClasses} from "../API/coursesAPI.js";
+import { createNewClass } from "../API/coursesAPI.js";
 
 class CreateCourses {
     constructor(courseName, classroom) {
@@ -46,8 +47,10 @@ async function addNewCourse(creatingBox) {
         if (error.message.includes("Course name")) {
             courseNameInput.placeholder = newPlaceholderText;
             courseNameInput.classList.add("input-error");
-            courseNameInput.focus(); // Optional: put focus on the error field
-        } else if (error.message.includes("Classroom")) {
+            courseNameInput.focus(); 
+        } 
+        
+        else if (error.message.includes("Classroom")) {
             classroomInput.placeholder = newPlaceholderText;
             classroomInput.classList.add("input-error");
             classroomInput.focus();
@@ -85,37 +88,4 @@ export function startToCreate(courseBody, addBox) {
     const cancelButton = document.getElementById("cancelButton");
     saveButton.onclick = () => addNewCourse(addCourse);
     cancelButton.onclick = () => addCourse.remove();
-}
-
-async function createNewClass(classData) {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-        console.error("Auth required.");
-        return;
-    }
-
-    try {
-        const response = await fetch("https://invaluably-grapier-jeni.ngrok-free.dev/classes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token,
-                "ngrok-skip-browser-warning": "true"
-            },
-            body: JSON.stringify(classData)
-        });
-
-        if (response.ok) {
-            const newClass = await response.json();
-            console.log("✅ Created:", newClass.title);
-            return newClass;
-        } else {
-            // Log the error status and message
-            const errorBody = await response.text();
-            console.error(`❌ Failed: Status ${response.status}`, errorBody);
-        }
-    } catch (error) {
-        console.error("Network error:", error);
-    }
 }

@@ -310,7 +310,7 @@ async function verifyTeacher() {
 
     try {
         const resVerify = await fetch(
-            `${API}/users/${encodeURIComponent(tutorId)}/verify?code=${encodeURIComponent(code)}`, // FIX: Added backticks
+            `${API}/users/${tutorId}/verify?code=${code}`, // FIX: Added backticks
             {
                 method: "POST",
                 headers: {
