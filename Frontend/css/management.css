@@ -24,13 +24,3 @@ body{
     font-size: 1.3em;
     color: #d4a391;
 }
-#studentsTable button{
-    font-size: 0.7em;
-}
-#newStudent{
-    background-color: green;
-}
-.deleteButton{
-    background-color: red;
-    padding: 10px 18px;
-}

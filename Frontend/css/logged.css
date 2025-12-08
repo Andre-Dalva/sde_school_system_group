@@ -1,0 +1,49 @@
+#userTable{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    margin: auto;
+    margin-top: 2%;
+    background-color: hsl(0, 0%, 95%);
+    padding: 2%;
+    min-height: 45vh;
+    border-radius: 100px;
+    justify-content: space-evenly;
+}
+.mainData{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1em;
+    align-items: center;
+
+}
+#icon{
+    font-size: 4em;
+    border: 4px solid #d4a391;
+    padding: 2%;
+    width: 30%;
+}
+#mainInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    font-size: 0.9em;
+    width: 55%;
+}
+.infoDetails{
+    text-align: right;
+    font-size: 1.3em;
+    color: #d4a391;
+    margin-bottom: 10%;
+}
+.secondaryData{
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    font-size: 0.6em;
+    column-gap: 1em;
+}
+.secondaryData span{
+    color: #d4a391;
+}
