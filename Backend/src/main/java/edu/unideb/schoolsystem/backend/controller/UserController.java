@@ -3,23 +3,30 @@ package edu.unideb.schoolsystem.backend.controller;
 import edu.unideb.schoolsystem.backend.dto.ClassForStudentDTO;
 import edu.unideb.schoolsystem.backend.dto.UserDTO;
 import edu.unideb.schoolsystem.backend.mapper.DTOMapper;
+import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
 import edu.unideb.schoolsystem.backend.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // 1) ADMIN – list all users
@@ -47,26 +54,78 @@ public class UserController {
         return ResponseEntity.ok(DTOMapper.toUserDTO(created));
     }
 
-    // 4) UPDATE – user updates themself OR admin updates anyone
-    @PutMapping("/{id}")
+    @GetMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<UserDTO> getMe(Authentication auth) {
+        User user = (User) auth.getPrincipal();
+        return ResponseEntity.ok(DTOMapper.toUserDTO(user));
+    }
+
+
+    @PatchMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<UserDTO> updateMe(
+            @RequestBody User patch,
+            Authentication auth
+    ) {
+        User me = (User) auth.getPrincipal();
+        User updated = userService.updateUser(me.getId(), patch);
+        return ResponseEntity.ok(DTOMapper.toUserDTO(updated));
+    }
+
+
+    // 4) UPDATE – user updates themselves OR admin updates anyone
+    @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == principal.id")
     public ResponseEntity<UserDTO> update(
             @PathVariable Long id,
-            @RequestBody User updated,
+            @RequestBody User patch,
             Authentication auth
     ) {
-        User result = userService.updateUser(id, updated);
-        if (result == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(DTOMapper.toUserDTO(result));
+        User user = userService.updateUser(id, patch);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(DTOMapper.toUserDTO(user));
     }
 
-    // 5) DELETE – admin only
+    // Admin can delete anyone (no password)
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/me")
+    public ResponseEntity<Void> deleteCurrentUser(
+            @RequestBody(required = false) Map<String, String> body,
+            Authentication authentication
+    ) {
+        // Must be logged in
+        if (authentication == null || !(authentication.getPrincipal() instanceof User currentUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Must send password in body
+        if (body == null || !body.containsKey("password")) {
+            return ResponseEntity.badRequest().build();  // 400 – missing password
+        }
+
+        String rawPassword = body.get("password");
+
+        // Check password
+        if (!passwordEncoder.matches(rawPassword, currentUser.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401 – wrong password
+        }
+
+        // Everything OK → delete
+        userService.deleteUser(currentUser.getId());
+        return ResponseEntity.noContent().build(); // 204
+    }
+
+
+
 
     // 6) GET classes for user:
     // Students: only their classes

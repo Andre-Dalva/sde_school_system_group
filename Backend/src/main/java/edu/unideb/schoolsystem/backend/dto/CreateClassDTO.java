@@ -3,10 +3,8 @@ package edu.unideb.schoolsystem.backend.dto;
 import lombok.Data;
 
 @Data
-public class ClassDTO {
-    private Long id;
+public class CreateClassDTO {
     private String title;
-    private String description;
     private String roomId;
-    private String teacherName;
+    private Long teacherId; // optional for teacher, required for admin
 }

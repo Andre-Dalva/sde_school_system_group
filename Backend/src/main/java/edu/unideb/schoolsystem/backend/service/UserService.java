@@ -3,9 +3,12 @@ package edu.unideb.schoolsystem.backend.service;
 import edu.unideb.schoolsystem.backend.model.ClassEntity;
 import edu.unideb.schoolsystem.backend.model.ROLES;
 import edu.unideb.schoolsystem.backend.model.User;
+import edu.unideb.schoolsystem.backend.repository.ClassRepository;
 import edu.unideb.schoolsystem.backend.repository.UserRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -15,13 +18,15 @@ public class UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final ClassRepository classRepository;
 
     public UserService(UserRepository userRepository,
                        EmailService emailService,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder, ClassRepository classRepository) {
         this.userRepository = userRepository;
         this.emailService = emailService;
         this.passwordEncoder = passwordEncoder;
+        this.classRepository = classRepository;
     }
 
     public List<User> getAllUsers() {
@@ -45,25 +50,50 @@ public class UserService {
             user.setVerificationExpiresAt(null);
         }
 
-        return userRepository.save(user);
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email is already taken.");
+        }
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new RuntimeException("Username is already taken.");
+        }
+
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Email or Username already in use");
+        }
     }
 
     // Secure update: no role change, no raw password
-    public User updateUser(Long id, User newUser) {
+    public User updateUser(Long id, User patch) {
         return userRepository.findById(id).map(user -> {
-            user.setName(newUser.getName());
-            user.setUsername(newUser.getUsername());
-            user.setEmail(newUser.getEmail());
-            user.setBirthDate(newUser.getBirthDate());
 
-            // Only update password if provided
-            if (newUser.getPassword() != null && !newUser.getPassword().isEmpty()) {
-                user.setPassword(passwordEncoder.encode(newUser.getPassword()));
+            if (patch.getName() != null)
+                user.setName(patch.getName());
+
+            // Check for email uniqueness (exclude current user)
+            if (patch.getEmail() != null && !patch.getEmail().equals(user.getEmail())) {
+                if (userRepository.existsByEmail(patch.getEmail())) {
+                    throw new RuntimeException("Email is already taken.");
+                }
+                user.setEmail(patch.getEmail());
             }
+
+            // Check for username uniqueness (exclude current user)
+            if (patch.getUsername() != null && !patch.getUsername().equals(user.getUsername())) {
+                if (userRepository.existsByUsername(patch.getUsername())) {
+                    throw new RuntimeException("Username is already taken.");
+                }
+                user.setUsername(patch.getUsername());
+            }
+            if (patch.getBirthDate() != null)
+                user.setBirthDate(patch.getBirthDate());
+
+            if (patch.getPassword() != null && !patch.getPassword().isBlank())
+                user.setPassword(passwordEncoder.encode(patch.getPassword()));
 
             // Do NOT change role here
             // user.setRole(newUser.getRole());
-
             return userRepository.save(user);
         }).orElse(null);
     }
@@ -112,8 +142,31 @@ public class UserService {
         return userRepository.save(teacher);
     }
 
+    @Transactional
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return; // nothing to delete
+        }
+
+        // 1) If user is a STUDENT – remove from all class student lists
+        var classesAsStudent = classRepository.findByStudents_Id(id);
+        for (ClassEntity c : classesAsStudent) {
+            c.getStudents().remove(user);
+        }
+
+        // 2) If user is a TEACHER – detach as teacher from all classes
+        var classesAsTeacher = classRepository.findByTeacher_Id(id);
+        for (ClassEntity c : classesAsTeacher) {
+            c.setTeacher(null);          // class remains, but with no teacher
+        }
+
+        // 3) Persist the class changes
+        classRepository.saveAll(classesAsStudent);
+        classRepository.saveAll(classesAsTeacher);
+
+        // 4) Finally delete the user
+        userRepository.delete(user);
     }
 
     public List<User> getUnverifiedTeachers() {

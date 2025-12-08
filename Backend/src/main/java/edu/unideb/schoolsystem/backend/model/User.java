@@ -14,7 +14,10 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "username")
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,8 +26,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String username;
+    @Column(nullable = false)
     private String email;
     private LocalDate birthDate;
     private String password;
