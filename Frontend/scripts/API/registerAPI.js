@@ -86,7 +86,7 @@ export async function verifyTeacher() {
 
     try {
         const resVerify = await fetch(
-            `${API}/users/${tutorId}/verify?code=${code}`, // FIX: Added backticks
+            `${API}/users/${tutorId}/verify?code=${code}`,
             {
                 method: "POST",
                 headers: {

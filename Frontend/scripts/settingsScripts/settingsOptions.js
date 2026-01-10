@@ -27,10 +27,10 @@ export function showOption(contentBox) {
         switch (index) {
             case 0:
                 contentBox.innerHTML = `
-                    <label class="formLabel" for="changeUserName" >New Username:</label>
-                    <input type="text" class="formBox" id="changeUserName" placeholder="type a new username">
+                    <label class="form-label" for="changeUserName" >New Username:</label>
+                    <input type="text" class="form-box" id="changeUserName" placeholder="type a new username">
 
-                    <button class="formButton settingButton" id="changeButton" type="button">Change</button>
+                    <button class="form-button settingButton" id="changeButton" type="button">Change</button>
                 `;
                 contentBox.style.animation = "indicator 0.5s";
 
@@ -47,17 +47,17 @@ export function showOption(contentBox) {
 
             case 1:
                 contentBox.innerHTML = `
-                    <label for="newPassword" class="formLabel">New password:</label>
-                    <input type="password" id="newPassword" class="formBox" placeholder="min 8 characters">
+                    <label for="newPassword" class="form-label">New password:</label>
+                    <input type="password" id="newPassword" class="form-box" placeholder="min 8 characters">
 
-                    <label for="retypeNewPassword" class="formLabel">Retype new password:</label>
-                    <input type="password" id="retypeNewPassword" class="formBox" placeholder="...">
+                    <label for="retypeNewPassword" class="form-label">Retype new password:</label>
+                    <input type="password" id="retypeNewPassword" class="form-box" placeholder="...">
 
                     <p id="password-error" class="errorMessage" style="color: red; display: none;"></p>
 
                     <div class="confirmationSection registerBlock">
-                        <button class="formButton" id="confirmationButton" type="button" >Confirm</button>
-                        <button class="formButton settingButton cancelButton" id="cancelChange" type="button">Cancel</button>
+                        <button class="form-button" id="confirmationButton" type="button" >Confirm</button>
+                        <button class="form-button settingButton cancelButton" id="cancelChange" type="button">Cancel</button>
                     </div>
                 `;
                 contentBox.style.animation = "indicator 1s";
@@ -91,12 +91,12 @@ export function showOption(contentBox) {
 
                 function showDeleteConfirmation() {
                     contentBox.innerHTML = `
-                        <label class="formLabel settingsQuetions">Delete your account?</label>
+                        <label class="form-label settings-questions">Delete your account?</label>
                         <p class="warningSentences">(This will permanently delete your account)</p>
 
-                        <div class="confirmationSection registerBlock">
-                            <button class="formButton" id="nextButton" type="button" style="background-color:red">Yes</button>
-                            <button class="formButton settingButton cancelButton" type="button">No</button>
+                        <div class="confirmation-section">
+                            <button class="form-button" id="nextButton" type="button" style="background-color:red">Yes</button>
+                            <button class="form-button settingButton cancelButton" type="button">No</button>
                         </div>
                     `;
                     contentBox.style.animation = "indicator 1s";
@@ -105,13 +105,14 @@ export function showOption(contentBox) {
 
                 function showPasswordConfirmation() {
                     contentBox.innerHTML = `
-                        <label for="confirmPassword"class="formLabel">Confirm with your password to delete:</label>
-                        <input type="password" id="confirmPassword" class="formBox" placeholder="type your current password">
+                        <label for="confirmPassword" class="form-label">Confirm with your password to delete:</label>
+                        <input type="password" id="confirmPassword" class="form-box" placeholder="type your current password">
                         <p id="delete-error" class="errorMessage" style="color: red; display: none;"></p>
 
-                        <div class="confirmationSection registerBlock">
-                            <button class="formButton" id="confirmationButton" type="button" style="background-color:red">Delete</button>
-                            <button class="formButton settingButton cancelButton" id="cancelDelete" type="button">Cancel</button>
+                        <div class="confirmation-section">
+                            <button class="form-button" id="confirmationButton" type="button" style="background-color:red">Delete</button>
+
+                            <button class="form-button settingButton cancelButton" id="cancelDelete" type="button">Cancel</button>
                         </div>
                     `;
 
@@ -137,15 +138,15 @@ export function showOption(contentBox) {
 
             case 3:
                 contentBox.innerHTML = `
-                    <label class="formLabel settingsQuetions">Are you sure?</label>
+                    <label class="form-label settings-questions">Are you sure?</label>
                     <p class="warningSentences">(This will log you out)</p>
 
-                    <div class="confirmationSection registerBlock">
+                    <div class="confirmation-section register-block">
                         <a href="../index.html">
-                            <button class="formButton" style="background-color:red" type="button" id="logoutYes">Yes</button>
+                            <button class="form-button" style="background-color:red" type="button" id="logoutYes">Yes</button>
                         </a>
                         
-                        <button class="formButton settingButton cancelButton" type="button">No</button>
+                        <button class="form-button settingButton cancelButton" type="button">No</button>
                     </div>
                 `;
                 contentBox.style.animation = "indicator 1s";

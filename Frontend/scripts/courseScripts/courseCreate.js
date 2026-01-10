@@ -30,6 +30,7 @@ async function addNewCourse(creatingBox) {
 
     try {
         const localCourse = new CreateCourses(courseNameInput.value, classroomInput.value);
+        
         const apiData = {
             "title": localCourse.courseName,
             "roomId": localCourse.classroom,

@@ -1,4 +1,13 @@
-#userTable{
+body{
+    background-image: url("../images/LiceuNacional2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(9px);
+    min-height: 100vh;
+}
+
+#user-table{
     display: flex;
     flex-direction: column;
     width: 35%;
@@ -7,15 +16,21 @@
     background-color: hsl(0, 0%, 95%);
     padding: 2%;
     min-height: 45vh;
-    border-radius: 100px;
+    border-radius: 5px;
     justify-content: space-evenly;
 }
-.mainData{
+.main-data{
     display: flex;
     justify-content: space-between;
     column-gap: 1em;
     align-items: center;
 
+}
+
+.main-courses{
+    width: 85%;
+    margin: auto;
+    padding-top: 5vh;
 }
 #icon{
     font-size: 4em;
@@ -23,7 +38,7 @@
     padding: 2%;
     width: 30%;
 }
-#mainInfo{
+#main-info{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -31,19 +46,19 @@
     font-size: 0.9em;
     width: 55%;
 }
-.infoDetails{
+.info-details{
     text-align: right;
     font-size: 1.3em;
     color: #d4a391;
     margin-bottom: 10%;
 }
-.secondaryData{
+.secondary-data{
     display: flex;
     text-align: left;
     justify-content: center;
     font-size: 0.6em;
     column-gap: 1em;
 }
-.secondaryData span{
+.secondary-data span{
     color: #d4a391;
 }

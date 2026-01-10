@@ -1,19 +1,12 @@
-body{
-    background-image: url("../images/LiceuNacional2.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    backdrop-filter: blur(9px);
-    min-height: 100vh;
-}
-
 #myCoursesHeader{
-    font-size: 0.82em;
+    font-size: 1.1em;
     color: #ffffff;
     background-color: #d4a391;
-    margin-bottom: 2vh;
     text-shadow: 0px 0px 2px rgb(139, 133, 133);
+    width: 85%;
+    margin: auto;
     padding: 10px 20px;
+    margin-bottom: 2vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -22,6 +15,8 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
 }
 
 .course{

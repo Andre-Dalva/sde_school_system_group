@@ -8,65 +8,66 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="topBar">
+    <header class="top-bar">
         <div>
             <a href="../index.html">
-                <h1 id="siteTitle">Liceu Nacional</h1>
+                <h1 id="site-title">Liceu Nacional</h1>
             </a>
         </div>
 
-        <div id="topButtons">
+        <div id="top-buttons">
             <a href="../index.html">
                 <h2>Home</h2>
             </a>
 
-            <a href="../gallery.html">
-                <h2>Gallery</h2>
-            </a>
-
             <a href="login.html">
-                <button class="loginButton">LOG IN</button>
-                <hr class="indicatingBar" id="barForLogin">
+                <button class="login-button">LOG IN <i class="fa-solid fa-arrow-right-to-bracket"></i></button></button>
             </a>
         </div>
+    </header>
 
-        <hr id="dividingBar">
-    </nav>
-
-    <main>
-        <form class="siteForm" id="loginForm">
-            <div class="formSection">
-                <label class="formLabel" for="emailBox">Email or Username:</label><br>
-                <input type="text" id="emailBox" class="formBox" name="emailBox" placeholder="email or username..." autocomplete="on" required>
+    <main class="login-main">
+        <form id="loginForm" class="site-form">
+            <div class="form-section">
+                <label for="emailBox">Email or Username:</label><br>
+                <input type="text" id="emailBox" class="form-box" name="emailBox" placeholder="email or username..." autocomplete="on" required>
             </div>
 
-            <div class="formSection">
-                <label class="formLabel" for="passwordBox">Password:</label><br>
-                <input type="password" id="passwordBox" class="formBox" name="passwordBox"
-                    placeholder="type your password..." autocomplete="off" required>
+            <div class="form-section">
+                <label for="passwordBox">Password:</label><br>
+                <input type="password" id="passwordBox" class="form-box" name="passwordBox" placeholder="type your password..." autocomplete="off" required>
             </div>
 
 
-            <button class="loginButton" id="loginButtonForm" type="submit">LOG IN</button>
+            <button class="login-button" id="loginButtonForm" type="submit">LOG IN</button>
 
-            <div class="formSection">
-                <h2 class="formQuestions"><a href="#">Forgot your password?</a></h2>
+            <div class="form-section">
+                <h2 class="form-questions">
+                    <a href="#">Forgot your password?</a>
+                </h2>
             </div>
 
-            <div class="formSection registerBlock">
-                <h2 class="formQuestions">Don't have an account?</h2>
+            <div class="form-section register-block">
+                <h2 class="form-questions">Don't have an account?</h2>
+
                 <a href="register.html">
-                    <button id="registerButton" class="formButton" type="button">Register</button>
+                    <button id="register-button" class="form-button login-button" type="button">Register</button>
                 </a>
             </div>
         </form>
     </main>
 
     <footer>
-
+        <hr class="bar">
+        <section class="foot">
+            &copy;Copyrights
+            <p>Made by: <a href="about.html"><span class="coloredLetter">A</span>ndré d'Alva.</a></p>
+            <p>Date: 10 Jan 2026.</p>
+        </section>
     </footer>
     <script src="../scripts/login.js"></script>
 </body>

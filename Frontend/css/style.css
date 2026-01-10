@@ -8,15 +8,14 @@
 *{
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 body{
-    margin: 0px;
-    padding: 0px;
     font-family: "Nunito", sans-serif;
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 a:hover{
     opacity: 0.8;
@@ -25,10 +24,10 @@ hr{
     border: none;
 }
 button{
-    font-size: 1.2em;
+    font-size: 1em;
     border: 0px;
     border-radius: 50px;
-    padding: 8% 15px;
+    padding: 8px 15px;
     font-weight: bold;
     color: white;
 }
@@ -41,123 +40,114 @@ h1{
     font-weight: 700;
 }
 /* Navigation and top bar */
-.topBar{
+.top-bar{
     display: flex;
-    flex-wrap: wrap;
-    position: fixed;
-    align-content: center;
     justify-content: space-between;
-    justify-self: center;
-    width: 80vw;
-    opacity: 0.9;
-    backdrop-filter: blur(5px);
+    align-items: center;
+    background-color: #d4a391;
+    height: 11vh;
+    min-height: fit-content;
+    font-size: 1.5em;
 }
-#siteTitle{
+#site-title{
     font-family: "Oswald", sans-serif;
     font-weight: 800;
-    padding-left: 60px;
-    font-size: 3em;
+    padding-left: 50px;
+    font-size: 2em;
+    color: white;
 }
-#topButtons{
+#top-buttons{
     display: flex;
     column-gap: 1em;
     align-items: center;
     justify-content: space-between;
-    padding-right: 60px;
+    padding-right: 50px;
 }
-#topButtons h2{
-    font-size: 1.5em;
+#top-buttons h2{
+    font-size: 1.3em;
     margin-bottom: 0px;
     font-family:"Noto Sans JP", sans-serif;;
     font-weight: bold;
 }
-.loginButton{
-    background-color: #d4a391;
+.login-button{
+    background-color: hsl(16, 44%, 60%);
     margin: auto;
-}
-#dividingBar{
-    height: 3px;
-    width: 96%;
-    background-color: black;
-    opacity: 0.7;
-    margin: auto;
-}
-.indicatingBar{
-    position: relative;
-    width: 3em;
-    height: 8px;
-    background-color: #d4a391;
-    top: 2vh;
-    margin: auto;
-    animation: indicator 0.5s;
-}
-
-/* Body */
-main{
-    width: 80vw;
-    margin: auto;
-    text-align: center;
-    padding-top: 15vh;
-    font-size: 1.2em;
-
+    padding: 15px;
+    border-radius: 5px;
 }
 
 /* Forms*/
-.siteForm{
+.site-form{
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    min-height: 40vh;
-    min-width: 300px;
-    width: 45%;
-    max-width: 400px;
-    margin: auto;
+    min-height: 50vh;
+    min-width: 350px;
+    width: 60%;
+    max-width: 600px;
     background-color: #dbd8d8;
-    border-radius: 25px;
+    border-radius: 8px;
     padding: 40px;
     text-align: left;
 
 }
-.formLabel{
-    font-size: 1.35em;
+.site-form label, .form-label{
+    font-size: 1.5em;
     font-weight: bold;
     padding-left: 3%;
 }
-.formBox{
-    width: 95%;
+.form-box{
+    width: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: 3px;
     background-color: #d4a391;
-    margin-bottom: 10px;
-    padding: 4%;
+    margin-bottom: 20px;
+    padding: 3%;
     padding-left: 25px;
-    font-size: 0.9em;
+    font-size: 1.2em;
     color: white;
 }
-.formBox:focus{
+.form-box:focus{
     outline: none;
-    box-shadow: 0px 0px 3px white;
+    box-shadow: 0px 0px 4px white;
 }
-.formButton{
+.form-button{
+    font-size: 1.2em;
+    background-color: hsl(16, 44%, 60%);
+    padding: 20 15px;
+    border-radius: 5px;
+}
+
+/* Body */
+main{
+    margin: auto;
+    text-align: center;
+    font-size: 1em;
+    min-height: 81vh;
+}
+/* Footer */
+.foot{
+    color: white;
+    text-align: center;
+    font-style: italic;
     background-color: #d4a391;
-    padding: 10px 18px;
-    font-size: 1.3em;
+    min-height: fit-content;
+    font-size: 1.06em;
+    min-height: 7vh;
 }
-.registerBlock{
-    justify-content: space-between;
+.foot a{
+    color: white;
+    text-decoration: underline;
 }
-.confirmationSection{
-    justify-content: center;
-    column-gap: 1em;
+.coloredLetter{
+    color: #8338ec;
 }
-.registerBlock, .confirmationSection{
-    display: flex;
-    width: 100%;
-    align-items: center;
-}
-/* Home images */
 
 /* Animation */
+.blinking{
+    animation: blinking infinite 3s;
+}
 @keyframes indicator {
     from{
         transform: scale(0);
@@ -165,14 +155,11 @@ main{
 }
 @keyframes slideDown {
     from{
-        transform: translateY(-6vh);
+        transform: translateY(-3vh);
     }
 }
-.blinking{
-    animation: blinking infinite 1.5s;
-}
 @keyframes blinking {
-    50%{
-        opacity: 0.1;
+    40%{
+        opacity: 0.2;
     }
 }

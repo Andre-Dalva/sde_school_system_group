@@ -21,8 +21,8 @@ export function dropSettings(settingButton, mainTag) {
                     </td>
 
                     <td rowspan="4" id="settingContent">
-                        <form id="contentBox" class="siteForm">
-                            </form>
+                        <form id="contentBox">
+                        </form>
                     </td>
 
                 </tr>
@@ -48,8 +48,8 @@ export function dropSettings(settingButton, mainTag) {
         `;
 
         settingButton.innerHTML = `
-            <i class="fa-regular fa-circle-user fa-xl" style="color: #000000;"></i>
-            <i class="fa-solid fa-caret-up fa-lg" style="color: #000000;"></i>
+            <i class="fa-regular fa-circle-user fa-xl" style="color: #ffff;"></i>
+            <i class="fa-solid fa-caret-up fa-lg" style="color: #ffff;"></i>
         `;
 
         mainTag.prepend(newSettingsBox);
@@ -59,8 +59,8 @@ export function dropSettings(settingButton, mainTag) {
 
     else {
         settingButton.innerHTML = `
-            <i class="fa-regular fa-circle-user fa-xl" style="color: #000000;"></i>
-            <i class="fa-solid fa-caret-down fa-lg"></i>
+            <i class="fa-regular fa-circle-user fa-xl" style="color: #ffff;"></i>
+            <i class="fa-solid fa-caret-down fa-lg" style="color: #ffff;"></i>
         `;
 
         if (settingsBox) {

@@ -5,59 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/settings.css">
-    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/logged.css">
+
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="topBar">
+    <header class="top-bar">
         <div>
             <a href="index-student.html">
-                <h1 id="siteTitle">Liceu Nacional</h1>
+                <h1 id="site-title">Liceu Nacional</h1>
             </a>
         </div>
 
-        <div id="topButtons">
+        <div id="top-buttons">
             <a href="index-student.html">
                 <h2>Home</h2>
 
-                <hr class="indicatingBar">
             </a>
 
             <a href="my-courses.html">
                 <h2>
-                    My courses <i class="fa-solid fa-book" style="color: #d4a391;"></i>
+                    Courses <i class="fa-solid fa-book" style="color: #d4a391;"></i>
                 </h2>
             </a>
 
             <h2 id="settings">
-                <i class="fa-regular fa-circle-user fa-xl" style="color: #000000;"></i>
-                <i class="fa-solid fa-caret-down fa-lg"></i>
+                <i class="fa-regular fa-circle-user fa-xl" style="color: #ffff;"></i>
+                <i class="fa-solid fa-caret-down fa-lg" style="color: #ffff;"></i>
             </h2>
         </div>
-        <hr id="dividingBar">
-    </nav>
+    </header>
 
     <main>
-         <h1 id="helloMessage">Hello!!</h1>
+        <h1 id="helloMessage">Hello!!</h1>
 
-        <div id="userTable">
-            <div class="mainData">
+        <div id="user-table">
+            <div class="main-data">
                 <div id="icon">
                     <i class="fa-regular fa-circle-user" style="color: #d4a391;"></i>
                 </div>
-                <div id="mainInfo">
+                <div id="main-info">
                     <h2>Full Name:</h2> 
-                    <h3 class="infoDetails" id="displayFullName"></h3>
+                    <h3 class="info-details" id="displayFullName"></h3>
                     <h2>Username: </h2>
-                    <h3 class="infoDetails" id="displayUsername"></h3>
+                    <h3 class="info-details" id="displayUsername"></h3>
                 </div>
             </div>
-            <div class="secondaryData">
+            <div class="secondary-data">
                 <h2>Email: <br>
                     <span id="displayEmail"></span>
                 </h2>
@@ -72,7 +71,12 @@
     </main>
 
     <footer>
-
+        <hr class="bar">
+        <section class="foot">
+            &copy;Copyrights
+            <p>Made by: <a href="about.html"><span class="coloredLetter">A</span>ndré d'Alva.</a></p>
+            <p>Date: 10 Jan 2026.</p>
+        </section>
     </footer>
     <script type="module" src="../scripts/settingsScripts/settingsController.js"></script>
     <script src="../scripts/studentUserScripts/userInfo.js"></script>

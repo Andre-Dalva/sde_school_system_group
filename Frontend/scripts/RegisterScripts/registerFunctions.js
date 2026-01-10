@@ -8,7 +8,9 @@ export function log(...args) {
 export function renderStep1(formData) {
     const form = document.getElementById("registerForm");
     form.innerHTML = `
-        <h2 id="formTitle">Create an Account</h2>
+        <h2 id="form-title">Create an Account</h2>
+
+        <p id="information-error" style="text-align: center; color: red; display: none; margin-top: 5px;"> Please fill in all basic information fields. </p>
 
         <div id="optionToRegister">
             <div class="oneOption">
@@ -22,28 +24,28 @@ export function renderStep1(formData) {
             </div>
         </div>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Full name:</label>
-            <input type="text" id="fullName" placeholder="type your full name..." class="formBox" value="${formData.name}">
+            <input type="text" id="fullName" placeholder="type your full name..." class="form-box" value="${formData.name}">
         </div>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Email:</label>
-            <input type="email" id="userEmail" placeholder="type your email..." class="formBox" value="${formData.email}">
+            <input type="email" id="userEmail" placeholder="type your email..." class="form-box" value="${formData.email}">
         </div>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Username:</label>
-            <input type="text" id="userName" placeholder="type your username..." class="formBox" value="${formData.username}">
+            <input type="text" id="userName" placeholder="type your username..." class="form-box" value="${formData.username}">
         </div>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Birthdate:</label>
-            <input type="date" id="userBirthdate" class="formBox" value="${formData.birthDate}">
+            <input type="date" id="userBirthdate" class="form-box" value="${formData.birthDate}">
         </div>
 
-        <div class="formSection registerBlock">
-            <button type="button" id="btnNext" class="formButton">
+        <div class="form-section register-block">
+            <button type="button" id="btnNext" class="form-button">
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -59,14 +61,16 @@ export function renderStep1(formData) {
         formData.username = document.getElementById("userName").value.trim();
         formData.birthDate = document.getElementById("userBirthdate").value;
 
+        const informationError = document.getElementById("information-error");
+
         if (!formData.name || !formData.email || !formData.username || !formData.birthDate) {
-            alert("Please fill in all basic information fields.");
+            informationError.style.display = "block";
             return;
         }
 
-        formData.role = document.getElementById("roleTutor").checked? "TEACHER": "STUDENT";
+        informationError.style.display = "none";
 
-        log("Collected Step 1:", formData);
+        formData.role = document.getElementById("roleTutor").checked? "TEACHER": "STUDENT";
 
         showStep(2, formData);
     };
@@ -75,26 +79,26 @@ export function renderStep1(formData) {
 export function renderStep2(formData) {
     const form = document.getElementById("registerForm");
     form.innerHTML = `
-        <h2 id="formTitle">Create Password</h2>
+        <h2 id="form-title">Create Password</h2>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Password:</label>
-            <input type="password" id="userPassword" class="formBox" placeholder="min 8 characters">
+            <input type="password" id="userPassword" class="form-box" placeholder="(min 8 characters)">
         </div>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Repeat Password:</label>
-            <input type="password" id="userPassword2" class="formBox">
+            <input type="password" id="userPassword2" class="form-box" placeholder="...">
             <p id="password-error" style="color: red; display: none; margin-top: 5px;">Passwords must match and be at least 8 characters long.</p>
         </div>
 
-        <div class="formSection registerBlock">
-            <button type="button" id="btnBack" class="formButton">
+        <div class="form-section register-block">
+            <button type="button" id="btnBack" class="form-button">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
 
-            <button type="button" id="btnNext" class="formButton">
-                <i class="fa-solid fa-arrow-right"></i>
+            <button type="button" id="btnNext" class="form-button">
+                SUBMIT
             </button>
         </div>
     `;
@@ -121,8 +125,6 @@ export function renderStep2(formData) {
         passwordError.style.display = 'none';
         formData.password = pw1;
 
-        log("Collected Step 2:", formData);
-
         if (formData.role === "STUDENT") {
             await submitStudent(formData);
         } else {
@@ -133,29 +135,28 @@ export function renderStep2(formData) {
 export function renderStep3(formData) {
     const form = document.getElementById("registerForm");
     form.innerHTML = `
-        <h2 id="formTitle">Tutor Verification</h2>
-
+        <h2 id="form-title">Tutor Verification</h2>
         <p style="margin: 0 0 1rem 0; text-align:center;">
             Your tutor account is pending activation. Please enter the<br>
             <strong>Tutor ID</strong> and <strong>8-digit verification code</strong> sent to your email.
         </p>
 
-        <div class="formSection">
+        <div class="form-section">
             <label>Tutor ID:</label>
-            <input type="text" id="tutorId" class="formBox">
+            <input type="text" id="tutorId" class="form-box">
         </div>
 
         <div class="formSection">
             <label>8-digit Code:</label>
-            <input type="text" id="teacherCode" class="formBox">
+            <input type="text" id="teacherCode" class="form-box">
         </div>
 
-        <div class="formSection registerBlock">
-            <button type="button" id="btnBack" class="formButton">
+        <div class="formSection register-block">
+            <button type="button" id="btnBack" class="form-button">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
 
-            <button type="button" id="btnSubmit" class="formButton">
+            <button type="button" id="btnSubmit" class="form-button">
                 Verify
             </button>
         </div>

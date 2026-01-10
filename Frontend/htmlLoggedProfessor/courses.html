@@ -5,32 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses</title>
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/courses.css">
+    <link rel="stylesheet" href="../css/logged.css">
     <link rel="stylesheet" href="../css/settings.css">
+    
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="topBar">
+    <header class="top-bar">
         <div>
             <a href="index-tutor.html">
-                <h1 id="siteTitle">Liceu Nacional</h1>
+                <h1 id="site-title">Liceu Nacional</h1>
             </a>
         </div>
 
-        <div id="topButtons">
+        <div id="top-buttons">
             <a href="index-tutor.html">
                 <h2>Home</h2>
             </a>
 
             <a href="courses.html">
                 <h2>
-                    Courses <i class="fa-solid fa-book" style="color: #d4a391;"></i>
+                    Courses <i class="fa-solid fa-book" style="color: white;"></i>
                 </h2>
-
-                <hr class="indicatingBar">
             </a>
 
             <a href="management.html">
@@ -38,15 +39,13 @@
             </a>
 
             <h2 id="settings">
-                <i class="fa-regular fa-circle-user fa-xl" style="color: #000000;"></i>
-                <i class="fa-solid fa-caret-down fa-lg"></i>
+                <i class="fa-regular fa-circle-user fa-xl" style="color: white;"></i>
+                <i class="fa-solid fa-caret-down fa-lg" style="color: white;"></i>
             </h2>
         </div>
+    </header>
 
-        <hr id="dividingBar">
-    </nav>
-
-    <main>
+    <main class="main-courses">
         <div id="editingSetterBlock">
             <h3 id="editingSetter">Editing Mode<i class="fa-solid fa-pen"></i></h3>
             <div id="editingSave">
@@ -65,7 +64,12 @@
     </main>
 
     <footer>
-
+        <hr class="bar">
+        <section class="foot">
+            &copy;Copyrights
+            <p>Made by: <a href="about.html"><span class="coloredLetter">A</span>ndré d'Alva.</a></p>
+            <p>Date: 10 Jan 2026.</p>
+        </section>
     </footer>
     <script type="module" src="../scripts/courseScripts/courseController.js"></script>
     <script type="module" src="../scripts/settingsScripts/settingsController.js"></script>

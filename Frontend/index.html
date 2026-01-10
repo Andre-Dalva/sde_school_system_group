@@ -8,55 +8,57 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <nav class="topBar">
+    <header class="top-bar">
         <div>
             <a href="index.html">
-                <h1 id="siteTitle">Liceu Nacional</h1>
+                <h1 id="site-title">Liceu Nacional</h1>
             </a>
         </div>
-        <div id="topButtons">
-            <a href="index.html">
-                <h2>Home</h2>
-                <hr class="indicatingBar">
-            </a>
-            <a href="gallery.html">
-                <h2>Gallery</h2>
-            </a>
+        <div id="top-buttons">
             <a href="htmlLoginAndRegister/login.html">
-                <button class="loginButton"> LOG IN</button>
+                <button class="login-button"> LOG IN <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
             </a>
         </div>
-        <hr id="dividingBar">
-    </nav>
+    </header>
     <main>
-        <h1 class="blinking">Welcome!!</h1>
-        <div id="aboutButtonContainer">
-            <div id="history" class="aboutButton">
-                <a target="_blank" href="https://en.wikipedia.org/wiki/National_Lyceum">
+        <div id="welcome-section" class="image-back">
+            <h1 id="welcome-phrase" class="blinking front-text">Welcome!!</h1>
+        </div>
+        <div id="about-container">
+
+            <div id="country" class="about-button image-back">
+                <a class="front-text" target="_blank"
+                    href="https://www.google.com/search?gs_ssp=eJzj4tDP1TfIMrMwNGD0Ei1OzFcoyc9NVUjMS1EoKMrMS84sSAUAoNoKjA&q=sao+tome+and+principe&oq=Sao+&gs_lcrp=EgZjaHJvbWUqDAgBEC4YFBiHAhiABDIGCAAQRRg5MgwIARAuGBQYhwIYgAQyBwgCEC4YgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBggGEEUYPTIGCAcQRRg90gEIMjIyNWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8">
+                    <h2>Country</h2>
+                </a>
+            </div>
+            
+            <div id="history" class="about-button image-back">
+                <a class="front-text" target="_blank" href="https://en.wikipedia.org/wiki/National_Lyceum">
                     <h2>History</h2>
                 </a>
             </div>
 
-            <div id="location" class="aboutButton">
-                <a target="_blank" href="https://www.google.com/maps/place/National+Lyceum/@0.3391151,6.7372585,17z/data=!4m6!3m5!1s0x10766a7b5a0109df:0x59e88caa0c2235c5!8m2!3d0.3391151!4d6.7398334!16s%2Fm%2F0hhqvsc?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D">
-                    <h2>Location</h2>
+            <div id="gallery" class="about-button image-back">
+                <a class="front-text" target="_blank" href="./gallery.html">
+                    <h2>Gallery</h2>
                 </a>
 
-            </div>
-
-            <div id="country" class="aboutButton">
-                <a target="_blank" href="https://www.google.com/search?gs_ssp=eJzj4tDP1TfIMrMwNGD0Ei1OzFcoyc9NVUjMS1EoKMrMS84sSAUAoNoKjA&q=sao+tome+and+principe&oq=Sao+&gs_lcrp=EgZjaHJvbWUqDAgBEC4YFBiHAhiABDIGCAAQRRg5MgwIARAuGBQYhwIYgAQyBwgCEC4YgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBggGEEUYPTIGCAcQRRg90gEIMjIyNWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8">
-                    <h2>Country</h2>
-                </a>
             </div>
         </div>
     </main>
     <footer>
-
+        <hr class="bar">
+        <section class="foot">
+            &copy;Copyrights
+            <p>Made by: <a href="about.html"><span class="coloredLetter">A</span>ndré d'Alva.</a></p>
+            <p>Starting date: 15 Fev 2025.</p>
+        </section>
     </footer>
 </body>
 
