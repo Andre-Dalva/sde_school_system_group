@@ -1,12 +1,12 @@
 import { fetchClasses, sendUpdateToAPI } from "../API/coursesAPI.js";
-import { deleteCourse } from "./courseDelete.js"; // Assuming this is correct
+import { deleteCourse } from "./courseDelete.js";
 
 export function editing(all) {
     const editingSave = document.getElementById("editingSave");
-    const editingCancel = document.getElementById("cancelEditing"); // Get cancel button reference
+    const editingCancel = document.getElementById("cancelEditing");
 
-    editingSave.style.display = "block";
-    editingCancel.style.display = "block"; // Ensure it shows when editing starts
+    editingSave.style.display = "inline-block";
+    editingCancel.style.display = "inline-block";
 
     // 1. CANCEL HANDLER FIX: Revert all courses marked as 'edit-mode'
     editingCancel.onclick = () => {
@@ -15,7 +15,6 @@ export function editing(all) {
             revertLocalEdit(course);
         });
         
-        // Hide global buttons and refresh the list to ensure full cleanup
         editingSave.style.display = "none";
         editingCancel.style.display = "none";
         fetchClasses(); 
@@ -64,11 +63,10 @@ export function editing(all) {
         let failCount = 0;
 
         coursesToSave.forEach(courseElement => {
-            // Push the promise-returning function call
             savePromises.push(
                 updateCourse(courseElement, revertLocalEdit)
                     .then(() => { successCount++; })
-                    .catch(() => { failCount++; }) // Catch individual failures
+                    .catch(() => { failCount++; })
             );
         });
         
@@ -100,10 +98,10 @@ function enableLocalEdit(courseContainer) {
     
     courseContainer.classList.add("edit-mode");
     if (editingOptions) editingOptions.style.display = "none";
-    document.getElementById("editingSave").style.display = "block";
-    document.getElementById("cancelEditing").style.display = "block";
+    document.getElementById("editingSave").style.display = "inline-block";
+    document.getElementById("cancelEditing").style.display = "inline-block";
 
-    // Replace text with input fields
+    
     titleElement.innerHTML = `
         <input type="text" 
                value="${originalTitle}" 
@@ -119,14 +117,6 @@ function enableLocalEdit(courseContainer) {
                data-field="roomId"
                placeholder="...">
     `;
-    
-    // The previous implementation of reconstructing courseDetailsP might be complex due to the span structure.
-    // Ensure the overall course details container reflects the input placement:
-    const courseDetailsP = courseContainer.querySelector(".courseDetails");
-    if (courseDetailsP) {
-        // Find a way to ensure the classroom input is placed correctly within the courseDetails structure
-        // If the structure is complex, this area might still require DOM specific adjustment.
-    }
 }
 
 // 4. FIX: USES STORED DATA FOR CANCELLATION
@@ -136,7 +126,6 @@ function revertLocalEdit(courseContainer, dataFromSave = null) {
 
     const tutorName = courseContainer.querySelector(".tutorName")?.textContent.trim() || 'Tutor Not Assigned';
 
-    // Prioritize saved data, otherwise use the stored original data for cancellation
     const newTitle = dataFromSave 
         ? dataFromSave.title 
         : courseContainer.dataset.originalTitle || titleElement.textContent.trim();
@@ -145,18 +134,14 @@ function revertLocalEdit(courseContainer, dataFromSave = null) {
         ? dataFromSave.roomId 
         : courseContainer.dataset.originalRoomId || '';
 
-    // Reconstruct the Title
     titleElement.innerHTML = `${newTitle}`;
 
-    // Reconstruct the Details (including the classroom span)
     courseDetailsP.innerHTML = `
         Classroom: <span class="classNumber">${newClassroom}</span> <br>
         Tutor: <span class="tutorName">${tutorName}</span>
     `;
 
-    // Final cleanup
     courseContainer.classList.remove("edit-mode");
-    // Note: Global button hiding is handled by the main editing function's cleanup.
 }
 
 // 5. ADJUSTMENT: Removed fetchClassesFn call as it's handled by Promise.allSettled
@@ -187,10 +172,9 @@ async function updateCourse(courseElement, revertLocalEditFn) {
 
         // Revert local edit mode upon successful save using the successful data
         revertLocalEditFn(courseElement, apiData);
-        // Do NOT call fetchClasses here
 
     } catch (error) {
         console.error(`Failed to save changes for Course ID ${courseId}:`, error);
-        throw error; // Re-throw to be caught by Promise.allSettled
+        throw error; 
     }
 }

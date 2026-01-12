@@ -57,7 +57,7 @@ export function showOption(contentBox) {
 
                     <div class="confirmationSection registerBlock">
                         <button class="form-button" id="confirmationButton" type="button" >Confirm</button>
-                        <button class="form-button settingButton cancelButton" id="cancelChange" type="button">Cancel</button>
+                        <button class="form-button settingButton cancel-button" id="cancelChange" type="button">Cancel</button>
                     </div>
                 `;
                 contentBox.style.animation = "indicator 1s";
@@ -96,7 +96,7 @@ export function showOption(contentBox) {
 
                         <div class="confirmation-section">
                             <button class="form-button" id="nextButton" type="button" style="background-color:red">Yes</button>
-                            <button class="form-button settingButton cancelButton" type="button">No</button>
+                            <button class="form-button settingButton cancel-button" type="button">No</button>
                         </div>
                     `;
                     contentBox.style.animation = "indicator 1s";
@@ -112,7 +112,7 @@ export function showOption(contentBox) {
                         <div class="confirmation-section">
                             <button class="form-button" id="confirmationButton" type="button" style="background-color:red">Delete</button>
 
-                            <button class="form-button settingButton cancelButton" id="cancelDelete" type="button">Cancel</button>
+                            <button class="form-button settingButton cancel-button" id="cancelDelete" type="button">Cancel</button>
                         </div>
                     `;
 
@@ -146,7 +146,7 @@ export function showOption(contentBox) {
                             <button class="form-button" style="background-color:red" type="button" id="logoutYes">Yes</button>
                         </a>
                         
-                        <button class="form-button settingButton cancelButton" type="button">No</button>
+                        <button class="form-button settingButton cancel-button" type="button">No</button>
                     </div>
                 `;
                 contentBox.style.animation = "indicator 1s";

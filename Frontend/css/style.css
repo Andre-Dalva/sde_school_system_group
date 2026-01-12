@@ -124,7 +124,8 @@ main{
     margin: auto;
     text-align: center;
     font-size: 1em;
-    min-height: 81vh;
+    min-height: 80vh;
+    height: fit-content;
 }
 /* Footer */
 .foot{
@@ -134,7 +135,7 @@ main{
     background-color: #d4a391;
     min-height: fit-content;
     font-size: 1.06em;
-    min-height: 7vh;
+    min-height: 9vh;
 }
 .foot a{
     color: white;
