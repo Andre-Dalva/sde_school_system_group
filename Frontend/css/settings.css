@@ -65,7 +65,7 @@
 #contentBox .settings-questions, .warningSentences{
     align-self: center;
 }
-.cancelButton{
+.cancel-button{
     background-color: #e8e8e8;
     color: black;
 }

@@ -56,23 +56,19 @@ export async function deleteAccount(password) {
         if (!response.ok) {
             let errorData = {};
             
-            // 🚨 FIX: Safely attempt to parse JSON only if content type indicates JSON
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.includes("application/json")) {
                 try {
                     errorData = await response.json();
                 } catch (e) {
-                    // This handles the 'Unexpected end of JSON input' error
                     console.warn(`Server status ${response.status} failed to parse as JSON. Body may be empty.`);
                 }
             }
             
-            // Throw a descriptive error using data from the body or the status code
             const errorMessage = errorData.message || `Deletion failed. Status: ${response.status}. Check your password.`;
             throw new Error(errorMessage);
         }
 
-        // Success: Account deleted. Clear token and redirect.
         localStorage.removeItem("token");
         alert("Account successfully deleted. You will now be redirected.");
         window.location.href = "../index.html";
@@ -80,7 +76,6 @@ export async function deleteAccount(password) {
         return true;
 
     } catch (error) {
-        // Propagate the error for the UI to display (e.g., "Password incorrect.")
         console.error("Account deletion error:", error.message);
         throw error;
     }
