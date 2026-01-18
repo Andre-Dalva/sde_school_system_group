@@ -5,89 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-
-            background-image: url("images/LiceuNacional.jpeg");
-            background-size: cover;
-            background-position: center;
-            filter: blur(25px);
-            z-index: -1;
-            height: 100vh;
-        }
-        #contents{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            row-gap: 2em;
-            column-gap: 2em;
-            padding: 1%;
-        }
-
-        #contents img{
-            width: 27%;
-            height: 35vh;
-            border-radius: 10%;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/logged.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 
-    <nav class="topBar">
+    <header class="top-bar">
         <div>
             <a href="index.html">
-                <h1 id="siteTitle">Liceu Nacional</h1>
+                <h1 id="site-title">Liceu Nacional</h1>
             </a>
         </div>
-        <div id="topButtons">
+
+        <div id="top-buttons">
             <a href="index.html">
                 <h2>Home</h2>
             </a>
-            <a href="gallery.html">
-                <h2>Gallery</h2>
-                <hr class="indicatingBar">
-            </a>
-            <a href="htmlLoginAndRegister/login.html">
-                <button class="loginButton"> LOG IN</button>
+
+            <a href="htmlLoginAndRegister/login.html" target="_self">
+                <button class="login-button">LOG IN <i class="fa-solid fa-arrow-right-to-bracket"></i></button></button>
             </a>
         </div>
-        <hr id="dividingBar">
-    </nav>
+    </header>
 
     <main>
-        <h1>Gallery</h1>
+        <h1  class="blinking" style="color: white; font-size: 2.5em;">Gallery</h1>
 
-        <div id="contents">
-            <img src="images/GalleryImages/LiceuPic11.webp">
-            <img src="images/GalleryImages/LiceuPic5.jpg">
-            <img src="images/GalleryImages/LiceuPic2.jpg">
-        
-            <img src="images/GalleryImages/LiceuPic10.webp">
-            <img src="images/GalleryImages/LiceuPic12.jpg">
-            <img src="images/GalleryImages/LiceuPic.jpg">
-        
-            <img src="images/GalleryImages/LiceuPic13.jpeg">
-            <img src="images/GalleryImages/LiceuPic15.jpeg">
-            <img src="images/GalleryImages/LiceuNacional.jpg">
-        
-            <img src="images/GalleryImages/LiceuPic1.jpg">
-            <img src="images/GalleryImages/LiceuPic4.jpg">
-            <img src="images/GalleryImages/LiceuPic9.webp">
-        
-            <img src="images/GalleryImages/LiceuPic8.webp">
-            <img src="images/GalleryImages/LiceuPic14.jpeg">
-            <img src="images/GalleryImages/LiceuPic6.jpg">
+        <div id="sliding-display">
+            <button id="slide-left" class="gallery-buttons">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button id="slide-right" class="gallery-buttons" onclick="slideRight()">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <figure id="pic-holder">
+            </figure>
         </div>
+
     </main>
-    
+    <footer>
+        <hr class="bar">
+        <section class="foot">
+            &copy;Copyrights
+            <p>Made by: <a target="_blank" href="https://webportifolio-one.vercel.app/"><span
+                        class="coloredLetter">A</span>ndré d'Alva.</a></p>
+            <p>Starting date: 15 Fev 2025.</p>
+        </section>
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/ed8ed1d0d5.js" crossorigin="anonymous"></script>
+    <script src="scripts/gallery.js"></script>
 </body>
+
+</html>
