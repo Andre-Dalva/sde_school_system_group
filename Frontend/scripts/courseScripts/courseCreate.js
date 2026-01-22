@@ -74,13 +74,15 @@ export function startToCreate(courseBody, addBox) {
             </h2>
         </div>
 
-        <div class="courseDetailsNew">
-            Classroom: <span class="classNumber"><input type="text" class="courseInput" id="inputClassroom" placeholder="..." ></span>
+        <div class="courseDetailsNew">Classroom: 
+            <span class="classNumber">
+                <input type="text"  id="inputClassroom" class="courseInput classroomInput" placeholder="..." >
+            </span>
         </div>
 
         <div id="saveCourseBox">
-            <button id="saveCourse" class="formButton">Save</button>
-            <button class="formButton cancelButton" type="reset" id="cancelButton">Cancel</button>
+            <button id="saveCourse" class="form-button">Save</button>
+            <button class="form-button cancel-button" type="reset" id="cancelButton">Cancel</button>
         </div>
     `;
 

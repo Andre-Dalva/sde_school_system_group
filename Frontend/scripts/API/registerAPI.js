@@ -1,7 +1,7 @@
 import { log } from "../RegisterScripts/registerFunctions.js";
 import { showStep } from "../RegisterScripts/registerController.js"; 
 
-const API = "https://invaluably-grapier-jeni.ngrok-free.dev";
+const API = "https://sde-school-system-group.onrender.com";
 
 export async function submitStudent(formData) {
     log("Submitting STUDENT:", formData);
@@ -27,7 +27,7 @@ export async function submitStudent(formData) {
 
         if (response.ok) {
             alert("Student registered successfully! You can now log in.");
-            window.location.href = '/htmlLoginAndRegister/login.html';
+            window.location.href = 'login.html';
         } else {
             const error = await response.json();
             alert(`Student registration failed: ${error.message || response.statusText}`);
@@ -99,7 +99,7 @@ export async function verifyTeacher() {
 
         if (resVerify.ok) {
             alert("Tutor verified successfully! You can now log in.");
-            window.location.href = '/htmlLoginAndRegister/login.html';
+            window.location.href = 'login.html';
         } else {
             const error = await resVerify.json();
             alert(`Verification failed. Details: ${error.message || resVerify.statusText}`);

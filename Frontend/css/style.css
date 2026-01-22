@@ -56,14 +56,43 @@ h1{
     height: 11vh;
     min-height: fit-content;
     font-size: 1.5em;
+    color: white;
+    padding: 0px 50px;
 }
 
-#site-title{
+#site-title, #site-title-mobile{
     font-family: "Oswald", sans-serif;
     font-weight: 800;
-    padding-left: 50px;
     font-size: 2em;
-    color: white;
+}
+#site-title-mobile{
+    display: none;
+    text-align: right;
+}
+
+#dropdown-menu{
+    display: none;
+}
+#hamburger-menu:hover{
+    transform: scale(1.2);
+}
+#dropdown-menu:hover #menu-options{
+    transform: scale();
+    display: block;
+}
+
+#menu-options{
+    display: none;
+    position: absolute;
+    list-style: none;
+}
+
+#menu-options li{
+    margin: 35% auto;
+}
+
+#menu-options li:hover{
+    transform: scale(1.2);
 }
 
 #top-buttons{
@@ -71,7 +100,6 @@ h1{
     column-gap: 1em;
     align-items: center;
     justify-content: space-between;
-    padding-right: 50px;
 }
 
 #top-buttons h2{
@@ -231,5 +259,23 @@ main{
 @keyframes blinking{
     40%{
         opacity: 0.2;
+    }
+}
+@media screen and (max-width: 1060px) {
+    #site-title-mobile{
+        display: block;
+    }
+
+    #site-title{
+        display: none;
+    }
+    #dropdown-menu{
+        display: block;
+    }
+    #top-buttons{
+        display: none;
+    }
+    body{
+        font-size: 1rem;
     }
 }

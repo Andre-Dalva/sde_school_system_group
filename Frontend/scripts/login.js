@@ -2,14 +2,11 @@ const loginButton = document.getElementById("loginButtonForm");
 function decodeJwtPayload(token) {
     if (!token) return null;
 
-    // JWT parts: header.payload.signature
     const parts = token.split('.');
     if (parts.length !== 3) return null;
 
-    // The payload is the second part (index 1)
     const payloadBase64 = parts[1];
     
-    // Convert Base64Url to Base64 (replace URL-safe chars and add padding)
     let base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
     switch (base64.length % 4) {
         case 0: break;
@@ -18,7 +15,6 @@ function decodeJwtPayload(token) {
     }
 
     try {
-        // Decode the Base64 string and parse the resulting JSON
         const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
@@ -31,7 +27,7 @@ function decodeJwtPayload(token) {
 }
 
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // Prevent form from reloading the page
+    e.preventDefault();
 
     const identifier = document.getElementById("emailBox").value;
     const password = document.getElementById("passwordBox").value;
@@ -46,7 +42,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     if (oldError) oldError.remove();
 
     try {
-        const response = await fetch("https://invaluably-grapier-jeni.ngrok-free.dev/auth/login", {
+        const response = await fetch("https://sde-school-system-group.onrender.com/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,6 +60,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             return;
         }
 
+        console.log("Log in processed");
         const token = await response.text();
 
         // If backend returns JWT token:
@@ -72,15 +69,14 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const userRole = payload ? payload.role : 'Student';
 
         if (userRole === 'ADMIN') {
-            window.location.href = "../htmlLoggedProfessor/index-tutor.html"; // Admin interface
+            window.location.href = "../htmlLoggedProfessor/index-tutor.html";
         } else if (userRole === 'TEACHER') {
             console.log("teacher")
-            window.location.href = "../htmlLoggedProfessor/index-tutor.html"; // Teacher interface
+            window.location.href = "../htmlLoggedProfessor/index-tutor.html";
         } else if (userRole === 'STUDENT') {
             console.log("student")
-            window.location.href = "../htmlLoggedStudent/index-student.html"; // Student interface (default)
+            window.location.href = "../htmlLoggedStudent/index-student.html";
         } else {
-            // Fallback for an unknown role, maybe redirect to a generic welcome page
             window.location.href = "../index.html";
             console.log("failed")
         }

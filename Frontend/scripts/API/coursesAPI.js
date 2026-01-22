@@ -1,7 +1,7 @@
 import {showClasses} from '../courseScripts/courseRead.js';
 import { startToCreate } from '../courseScripts/courseCreate.js';
 
-const API_BASE_URL = "https://invaluably-grapier-jeni.ngrok-free.dev";
+const API_BASE_URL = "https://sde-school-system-group.onrender.com";
 const API_CLASSES_URL = `${API_BASE_URL}/classes`;
 
 function getToken() {
@@ -40,6 +40,7 @@ export async function createNewClass(classData) {
             try {
                 const errorJson = JSON.parse(errorBody);
                 errorMessage += `: ${errorJson.message || response.statusText}`;
+                console.log("JSON ERROR")
             } catch (e) {
                 errorMessage += `. Details: ${errorBody.substring(0, 100)}`; 
             }

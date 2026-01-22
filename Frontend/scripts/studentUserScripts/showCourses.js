@@ -8,13 +8,20 @@ function showClasses(classesData) {
         const newCourseHTML = `
             <div class="course" data-id="${cls.id}">
                 <div class="courseTitleContainer">
-                        <h2 class="courseTitle">${cls.title}</h2>
-                    <div class="edit"><i class="fa-solid fa-ellipsis" style="color: #000000;"></i></div>
-                    <div class="editingOptions"><h4 class="editCourse">Edit</h4><h4 class="deleteCourse">Delete</h4></div>
+                    <h2 class="courseTitle">${cls.title.toUpperCase()}</h2>
+                    <div class="edit">
+                        <i class="fa-solid fa-ellipsis" style="color: #000000;"></i>
+                        </div>
+                    <div class="editingOptions">
+                        <h4 class="editCourse">Edit</h4>
+                        <h4 class="deleteCourse">Delete</h4>
+                    </div>
                 </div>
                 <div class="courseDescription">
-                    <p class="courseDetails">Classroom: <span class="classNumber">${cls.roomId}</span> <br> 
-                        Tutor: <span class="tutorName">${cls.teacherName || 'Tutor ID Missing'}</span> </p>
+                    <p class="courseDetails">Classroom: 
+                        <span class="classNumber">${cls.roomId}</span> <br> 
+                        Tutor: <span class="tutorName">${cls.teacherName || 'Tutor ID Missing'}</span>
+                    </p>
                 </div>
             </div>
         `;
@@ -34,7 +41,7 @@ export async function fetchClasses() {
     }
 
     try {
-        const response = await fetch("https://invaluably-grapier-jeni.ngrok-free.dev/classes", {
+        const response = await fetch("https://sde-school-system-group.onrender.com/classes", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token,

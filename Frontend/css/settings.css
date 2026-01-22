@@ -68,6 +68,7 @@
 .cancel-button{
     background-color: #e8e8e8;
     color: black;
+    margin-left: 7px;
 }
 .warningSentences{
     font-size: 1em;

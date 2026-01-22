@@ -1,6 +1,6 @@
 const token = localStorage.getItem("token");
 
-fetch("https://invaluably-grapier-jeni.ngrok-free.dev/users/me", {
+fetch("https://sde-school-system-group.onrender.com/users/me", {
     method: "GET",
     headers: {
         "Authorization": "Bearer " + token,

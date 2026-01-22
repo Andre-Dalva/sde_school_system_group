@@ -5,8 +5,6 @@ export function showClasses(classesData) {
     classesData.forEach((currentClass) => {
         const newCourseHTML = `
             <div class="course" data-id="${currentClass.id}">
-                <div class="courseTitleContainer">
-                        <h2 class="courseTitle">${currentClass.title}</h2>
                     <div class="edit">
                         <i class="fa-solid fa-ellipsis" style="color: #000000;"></i>
                     </div>
@@ -15,6 +13,8 @@ export function showClasses(classesData) {
                         <h4 class="editCourse">Edit</h4>
                         <h4 class="deleteCourse">Delete</h4>
                     </div>
+                <div class="courseTitleContainer">
+                        <h2 class="courseTitle">${currentClass.title.toUpperCase()}</h2>
                 </div>
                 <div class="courseDescription">
                     <p class="courseDetails">Classroom: <span class="classNumber">${currentClass.roomId}</span> <br> 

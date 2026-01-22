@@ -21,7 +21,7 @@ export function editing(all) {
     };
 
     all.forEach(course => {
-        course.style.display = "block";
+        course.style.display = "inline-block";
     });
 
     const edits = document.querySelectorAll(".edit");
@@ -36,7 +36,7 @@ export function editing(all) {
                 editingOption.style.display = "none";
                 on = 0;
             } else {
-                editingOption.style.display = "block";
+                editingOption.style.display = "inline-block";
                 on = 1;
 
                 const editButton = editingOption.querySelector(".editCourse");
@@ -105,7 +105,7 @@ function enableLocalEdit(courseContainer) {
     titleElement.innerHTML = `
         <input type="text" 
                value="${originalTitle}" 
-               class="courseInput large" 
+               class="courseInput" 
                data-field="title"
                placeholder="Course name...">
     `;
@@ -113,7 +113,7 @@ function enableLocalEdit(courseContainer) {
     classroomElement.innerHTML = `
         <input type="text" 
                value="${originalClassroom}" 
-               class="courseInput small" 
+               class="courseInput classroomInput" 
                data-field="roomId"
                placeholder="...">
     `;
