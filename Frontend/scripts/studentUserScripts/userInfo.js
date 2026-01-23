@@ -21,4 +21,6 @@ function displayInfo(userData){
     document.getElementById("displayEmail").innerText = userData.email
     document.getElementById("displayBirth").innerText = userData.birthDate;
     document.getElementById("displayRole").innerText = userData.role;
+    const fullName = [userData.name.split(" ")];
+    document.getElementById("helloUser").innerText = fullName[0];
 }

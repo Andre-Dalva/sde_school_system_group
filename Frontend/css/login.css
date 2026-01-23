@@ -1,55 +1,64 @@
-#registerForm{
+#registerForm {
     margin: 3vh auto;
 }
-.register-block{
+
+.register-block {
     justify-content: space-between;
 }
-.confirmation-section{
+
+.confirmation-section {
     justify-content: center;
     column-gap: 1em;
 }
-.register-block, .confirmation-section{
+
+.register-block,
+.confirmation-section {
     display: flex;
     width: 100%;
     align-items: center;
 }
 
 
-#barForLogin{
+#barForLogin {
     bottom: -5.5px;
 }
-#loginButtonForm{
+
+#loginButtonForm {
     font-size: 1.3em;
     padding: 50px 25px;
 }
-.form-questions{
+
+.form-questions {
     font-size: 1.3em;
 }
-#register-button{
+
+#register-button {
     padding: 10px 18px;
     font-size: 1.3em;
 }
-#form-title{
+
+#form-title {
     text-align: center;
     font-size: 1.6em;
 }
-#optionToRegister{
+
+#optionToRegister {
     display: flex;
     justify-content: space-evenly;
 }
-#barForRegister{
-    bottom: -5.5px;
-}
-#loginButtonForm{
+
+#loginButtonForm {
     padding: 10px 25px;
 }
-.login-main{
+
+.login-main {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
 }
-body{
+
+body {
     background-image: url("../images/LiceuNacional2.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -57,4 +66,33 @@ body{
     backdrop-filter: blur(9px);
     background-position-y: 100%;
     min-height: 100vh;
+}
+
+@media screen and (max-width: 1060px) {
+
+    #loginButtonForm {
+        font-size: 1.1em;
+    }
+
+    .form-questions {
+        font-size: 1.1em;
+    }
+
+    #register-button {
+        font-size: 1.1em;
+    }
+
+    #form-title {
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    #form-title {
+        text-align: center;
+        font-size: 1.3em;
+    }
+
+    .confirmation-section {
+        column-gap: 0.5em;
+    }
 }

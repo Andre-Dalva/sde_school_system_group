@@ -1,14 +1,12 @@
 @import "style.css";
 
-#helloMessage{
-    margin-bottom: 20px;
-}
 /* For the dropdown settings*/
-#settings:hover{
+#settings:hover {
     opacity: 0.8;
     cursor: pointer;
 }
-#settingsBox{
+
+#settingsBox {
     width: 80%;
     background-color: hsl(0, 0%, 95%);
     text-align: center;
@@ -16,34 +14,41 @@
     animation: slideDown 1s;
     margin: 2vh auto;
 }
-#settingTitle{
+
+#settingTitle {
     padding: 20px;
     font-size: 2em;
 }
-#optionTable{
+
+#optionTable {
     width: 100%;
     min-height: 42vh;
 }
-.settingOption{
+
+.settingOption {
     text-align: center;
     border-top: 2.5px solid white;
     padding: 1%;
     font-size: 1.2em;
 }
-.settingOption h3{
+
+.settingOption h3 {
     padding: 1%;
     padding-left: 4%;
 }
-.settingOption:hover{
+
+.settingOption:hover {
     opacity: 0.8;
     cursor: pointer;
 }
-#settingContent{
+
+#settingContent {
     text-align: center;
     width: 75%;
     border-left: 2.5px solid white;
 }
-#contentBox{
+
+#contentBox {
     display: flex;
     flex-direction: column;
     padding: 5%;
@@ -52,32 +57,64 @@
     width: 70%;
     margin: auto;
 }
-#contentBox .form-label{
+
+#contentBox .form-label {
     font-size: 1.2em;
     align-self: flex-start;
 }
-#contentBox .form-box{
+
+#contentBox .form-box {
     font-size: 1em;
 }
-.settingButton{
+
+.settingButton {
     align-self: flex-end;
 }
-#contentBox .settings-questions, .warningSentences{
+
+#contentBox .settings-questions,
+.warningSentences {
     align-self: center;
 }
-.cancel-button{
+
+.cancel-button {
     background-color: #e8e8e8;
     color: black;
     margin-left: 7px;
 }
-.warningSentences{
+
+.warningSentences {
     font-size: 1em;
     margin-bottom: 0.7em;
 }
-.activeOption{
+
+.activeOption {
     padding: 5px;
     background-color: #d4a391;
     color: white;
     border-radius: 5px;
     transition: background-color 0.8s ease;
+}
+
+
+@media screen and (max-width: 1060px) {
+    #settingsBox {
+        width: 95%;
+    }
+
+    #settingTitle {
+        padding: 10px;
+        font-size: 1.5em;
+    }
+
+    #optionTable {
+        min-height: 40vh;
+    }
+
+    .settingOption {
+        font-size: 1em;
+    }
+
+    #contentBox .form-label {
+        font-size: 1.1em;
+    }
 }
