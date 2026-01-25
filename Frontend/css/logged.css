@@ -20,7 +20,7 @@ body {
 #user-table {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    min-width: 200px;
     width: 35%;
     margin: auto;
     margin-top: 2%;
@@ -81,6 +81,6 @@ body {
     }
 
     #user-table {
-        width: 85%;
+        width: 90%;
     }
 }

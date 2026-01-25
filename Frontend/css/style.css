@@ -74,6 +74,7 @@ h1 {
 #dropdown-menu {
     display: none;
 }
+
 #hamburger-menu:hover {
     transform: scale(1.2);
 }
@@ -358,8 +359,13 @@ main {
         color: white;
     }
 
+    .login-button {
+        padding: 10px 15px;
+    }
+
     .form-button {
         font-size: 1em;
+        padding: 8px 10px;
     }
 
     body {
@@ -378,7 +384,7 @@ main {
     .about-button {
         width: 30%;
         height: 20vh;
-        font-size: 1.1em;
+        font-size: 1em;
     }
 
     #sliding-display {
